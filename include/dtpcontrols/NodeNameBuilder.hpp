@@ -10,10 +10,8 @@
  * received with this code.
  */
 
-#ifndef DTP_INCLUDE_DTP_NODENAMEBUILDER_HPP_
-#define DTP_INCLUDE_DTP_NODENAMEBUILDER_HPP_
-
-#include <iostream>
+#ifndef DTPCONTROLS_INCLUDE_DTPCONTROLS_NODENAMEBUILDER_HPP_
+#define DTPCONTROLS_INCLUDE_DTPCONTROLS_NODENAMEBUILDER_HPP_
 
 class NodeNameBuilder{
 
@@ -43,4 +41,4 @@ T NodeNameBuilder::Stitch(T lFirst, Args... lArgs) {
   return lFirst + '.' + Stitch(lArgs...);
 }
 
-#endif // DTP_INCLUDE_DTP_DATARECEPTIONNODE_HPP_
+#endif // DTPCONTROLS_INCLUDE_DTPCONTROLS_NODENAMEBUILDER_HPP_

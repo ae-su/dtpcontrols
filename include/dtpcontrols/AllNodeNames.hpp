@@ -13,8 +13,8 @@
  * received with this code.
  */
 
-#ifndef DTP_INCLUDE_DTP_ALLNODENAMES_HPP_
-#define DTP_INCLUDE_DTP_ALLNODENAMES_HPP_
+#ifndef DTPCONTROLS_INCLUDE_DTPCONTROLS_ALLNODENAMES_HPP_
+#define DTPCONTROLS_INCLUDE_DTPCONTROLS_ALLNODENAMES_HPP_
 
 #include <string> 
 
@@ -147,4 +147,4 @@ namespace AllNodeNames {
   const std::string write_data_low{"write_data_low"};
 }
 
-#endif // #ifndef DTP_INCLUDE_DTP_ALLNODENAMES_HPP_
+#endif // #ifndef DTPCONTROLS_INCLUDE_DTPCONTROLS_ALLNODENAMES_HPP_
