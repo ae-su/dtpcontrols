@@ -6,26 +6,21 @@
  * received with this code.
  */
 
-#include <exception>
+//#include "logging/Logging.hpp"
 
-//#include "logging/logging.hpp"
-//#include "NodeNameBuilder.hpp"
 #include "dtpcontrols/DataReceptionNode.hpp"
-#include "dtpcontrols/AllNodeNames.hpp"
-
-using namespace AllNodeNames;
 
 UHAL_REGISTER_DERIVED_NODE(DataReceptionNode)
 
 //NodeNameBuilder* nnb;
 
-DataReceptionNode::DataReceptionNode(const uhal::Node& node) : DTP(node){}
+DataReceptionNode::DataReceptionNode(const uhal::Node& node) : DTPNode(node){}
 
 DataReceptionNode::~DataReceptionNode(){}
 
 void DataReceptionNode::EnableDataReception(bool dispatch) {
   try {    
-    getNode(Stitch(csr, ctrl, en)).write(0x1);
+    getNode("csr.ctrl.en").write(0x1);
   } catch (...) {
     std::cout << "Error enabling Data Reception block." << "\n";
   }
@@ -34,7 +29,7 @@ void DataReceptionNode::EnableDataReception(bool dispatch) {
 
 void DataReceptionNode::ResetInputWordCounter(bool dispatch) {
   try {
-    getNode(Stitch(csr, ctrl, rst_inctr)).write(0x1);
+    getNode("csr.ctrl.rst_inctr").write(0x1);
   } catch (...) {
     std::cout << "Error resetting input word count." << "\n";
   }
@@ -43,7 +38,7 @@ void DataReceptionNode::ResetInputWordCounter(bool dispatch) {
 
 void DataReceptionNode::ResetOutputWordCounter(bool dispatch) {
   try {
-    getNode(Stitch(csr, ctrl, rst_outctr)).write(0x1);
+    getNode("csr.ctrl.rst_outctr").write(0x1);
   } catch (...) {
     std::cout << "Error resetting output word counter." << "\n";
   }
@@ -51,7 +46,7 @@ void DataReceptionNode::ResetOutputWordCounter(bool dispatch) {
 
 void DataReceptionNode::ErrorReset(bool dispatch) {
   try {
-    getNode(Stitch(csr, ctrl, err_rst)).write(0x1);
+    getNode("csr.ctrl.err_rst").write(0x1);
   } catch (...) {
     std::cout << "Error writing error reset." << "\n";
   }
@@ -61,7 +56,7 @@ void DataReceptionNode::ErrorReset(bool dispatch) {
 uhal::ValWord<uint32_t> DataReceptionNode::DualPortRamWriteFlag(bool dispatch) {
   uhal::ValWord<uint32_t> lDPRWF;  
   try {
-    lDPRWF = getNode(Stitch(stat, dpr_wen)).read();
+    lDPRWF = getNode("stat.dpr_wen").read();
   } catch (...) {
     std::cout << "Error accessing Dual Port RAM write busy flag." << "\n";
   }
@@ -72,7 +67,7 @@ uhal::ValWord<uint32_t> DataReceptionNode::DualPortRamWriteFlag(bool dispatch) {
 uhal::ValWord<uint32_t> DataReceptionNode::StickyErrorBit(bool dispatch) {
   uhal::ValWord<uint32_t> lSEB;  
   try {
-    lSEB =  getNode(Stitch(csr, err)).read();
+    lSEB =  getNode("stat.err").read();
   } catch (...) {
     std::cout << "Error accessing Sticky Error Bit." << "\n";
   }
@@ -83,7 +78,7 @@ uhal::ValWord<uint32_t> DataReceptionNode::StickyErrorBit(bool dispatch) {
 uhal::ValWord<uint32_t> DataReceptionNode::BackPressureBit(bool dispatch) {
   uhal::ValWord<uint32_t> lBPB;  
   try {
-    lBPB = getNode(Stitch(csr, bp)).read();
+    lBPB = getNode("stat.bp").read();
   } catch (...) {
     std::cout << "Error accessing Back Pressure Bit." << "\n";
   }
@@ -94,7 +89,7 @@ uhal::ValWord<uint32_t> DataReceptionNode::BackPressureBit(bool dispatch) {
 uhal::ValWord<uint32_t> DataReceptionNode::OutOfSync(bool dispatch) {
   uhal::ValWord<uint32_t> lOOS;  
   try {
-    lOOS = getNode(Stitch(csr, oos)).read();
+    lOOS = getNode("stat.oos").read();
   } catch (...) {
     std::cout << "Error accessing Out of Sync Bit." << "\n";
   }
@@ -105,7 +100,7 @@ uhal::ValWord<uint32_t> DataReceptionNode::OutOfSync(bool dispatch) {
 uhal::ValWord<uint32_t> DataReceptionNode::RxWordCount(bool dispatch) {
   uhal::ValWord<uint32_t> lRXWC;  
   try {
-    lRXWC = getNode(Stitch(rcvd_wrd_cnt)).read();
+    lRXWC = getNode("rcvd_wrd_cnt").read();
   } catch (...) {
     std::cout << "Error accessing Received Word Count register." << "\n";
   }
@@ -116,7 +111,7 @@ uhal::ValWord<uint32_t> DataReceptionNode::RxWordCount(bool dispatch) {
 uhal::ValWord<uint32_t> DataReceptionNode::SentWordCount(bool dispatch) {
   uhal::ValWord<uint32_t> lSWC;
   try {
-    lSWC =  getNode(Stitch(sent_wrd_cnt)).read();
+    lSWC =  getNode("sent_wrd_cnt").read();
   } catch (...) {
     std::cout << "Error accessing Sent Word Count register." << "\n";
   }
@@ -127,7 +122,7 @@ uhal::ValWord<uint32_t> DataReceptionNode::SentWordCount(bool dispatch) {
 uhal::ValWord<uint32_t> DataReceptionNode::SentPacketCount(bool dispatch) {
   uhal::ValWord<uint32_t> lSPC;
   try {
-    lSPC = getNode(Stitch(sent_pkt_cnt)).read();
+    lSPC = getNode("sent_pkt_cnt").read();
   } catch (...) {
     std::cout << "Error accessing Sent Packet Count register." << "\n";
   }

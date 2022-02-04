@@ -14,9 +14,9 @@
 #define DTPCONTROLS_INCLUDE_DTPCONTROLS_CONTROLNODENODE_HPP_
 
 
-#include "DTP.hpp"
+#include "DTPNode.hpp"
 
-class ControlNode : public DTP{
+class ControlNode : public DTPNode{
 
   UHAL_DERIVEDNODE(ControlNode)
   

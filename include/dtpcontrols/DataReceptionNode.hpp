@@ -1,7 +1,7 @@
 /**
  * @file DataReceptionNode.hpp
  *
- * DataReceptionNode is a class derived from uhal::Node.
+ * DataReceptionNode is a class derived from 
  * Its purpose is to control and read status of the data-
  * reception firmware, within DTP-firmware which is part of DUNE DAQ.
  *
@@ -14,9 +14,9 @@
 #define DTPCONTROLS_INCLUDE_DTPCONTROLS_DATARECEPTIONNODE_HPP_
 
 
-#include "DTP.hpp"
+#include "dtpcontrols/DTPNode.hpp"
 
-class DataReceptionNode : public DTP{
+class DataReceptionNode : public DTPNode{
 
   UHAL_DERIVEDNODE(DataReceptionNode)
   

@@ -10,8 +10,8 @@
  * received with this code.
  */
 
-#ifndef DTPCONTROLS_INCLUDE_DTPCONTROLS_DTPCONTROLSNODE_HPP_
-#define DTPCONTROLS_INCLUDE_DTPCONTROLS_DTPCONTROLSNODE_HPP_
+#ifndef DTPCONTROLS_INCLUDE_DTPCONTROLS_DTPNODE_HPP_
+#define DTPCONTROLS_INCLUDE_DTPCONTROLS_DTPNODE_HPP_
 
 #define DISPATCH_TRUE 1
 
@@ -21,15 +21,13 @@
 #include "uhal/HwInterface.hpp"
 #include "uhal/DerivedNode.hpp"
 
-//DTP includes
-#include "NodeNameBuilder.hpp"
 
-class DTP : public uhal::Node, public NodeNameBuilder{
+class DTPNode : public uhal::Node {
 
 public:
  
-  explicit DTP(const uhal::Node&);
-  virtual ~DTP();
+  explicit DTPNode(const uhal::Node&);
+  virtual ~DTPNode();
 
   /*
   template<typename T>
@@ -40,4 +38,4 @@ public:
   */
 };
 
-#endif // DTPCONTROLS_INCLUDE_DTPCONTROLS_DTPCONTROLSNODE_HPP_
+#endif // DTPCONTROLS_INCLUDE_DTPCONTROLS_DTPNODE_HPP_

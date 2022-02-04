@@ -1,8 +1,16 @@
-#include "dtpcontrols/DTP.hpp"
+/**
+ * @file DTPNode.cpp
+ *
+ * This is part of the DUNE DAQ Software Suite, copyright 2022.
+ * Licensing/copyright details are in the COPYING file that you should have
+ * received with this code.
+ */
 
-DTP::DTP(const uhal::Node& node) : uhal::Node(node) {};
+#include "dtpcontrols/DTPNode.hpp"
 
-DTP::~DTP() {};
+DTPNode::DTPNode(const uhal::Node& node) : uhal::Node(node) {};
+
+DTPNode::~DTPNode() {};
 
 /*
 template <> void DTP::WriteReg(const Response<uint32_t> & lNodePath){};
