@@ -22,29 +22,17 @@ ControlNode::ControlNode(const uhal::Node& node) : DTPNode(node){}
 ControlNode::~ControlNode(){}
 
 void ControlNode::Nuke(bool dispatch) {
-  try {    
-    getNode("csr.ctrl.nuke").write(0x1);
-  } catch (...) {
-    std::cout << "Error nuking control block." << "\n";
-  }
+  getNode("csr.ctrl.nuke").write(0x1);
   if(dispatch) {getClient().dispatch();}
 }
 
 void ControlNode::SoftReset(bool dispatch) {
-  try {
-    getNode("csr.ctrl.soft_rst").write(0x1);
-  } catch (...) {
-    std::cout << "Error soft resetting control block." << "\n";
-  }
+  getNode("csr.ctrl.soft_rst").write(0x1);
   if(dispatch) {getClient().dispatch();}
 }
 
 void ControlNode::MasterReset(bool dispatch) {
-  try {
-    getNode("csr.ctrl.mst_rst").write(0x1);
-  } catch (...) {
-    std::cout << "Error issuing master." << "\n";
-  }
+  getNode("csr.ctrl.mst_rst").write(0x1);
   if(dispatch) {getClient().dispatch();}
   
 }

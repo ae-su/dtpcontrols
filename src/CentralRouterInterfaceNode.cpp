@@ -16,20 +16,12 @@ CentralRouterInterfaceNode::CentralRouterInterfaceNode(const uhal::Node &node)
 CentralRouterInterfaceNode::~CentralRouterInterfaceNode() {}
 
 void CentralRouterInterfaceNode::EnableRouterInterface(bool dispatch) {
-  try {    
-    getNode("csr.ctrl.en").write(0x1);
-  } catch (...) {
-    std::cout << "Error enabling central router interface." << "\n";
-  }
+  getNode("csr.ctrl.en").write(0x1);
   if(dispatch) {getClient().dispatch();}
 }
 
 void CentralRouterInterfaceNode::DropEmpty(bool dispatch) {
-  try {    
-    getNode("csr.ctrl.drop_empty").write(0x1);
-  } catch (...) {
-    std::cout << "Error setting drop empty." << "\n";
-  }
+  getNode("csr.ctrl.drop_empty").write(0x1);
   if(dispatch) {getClient().dispatch();}
 }
 
