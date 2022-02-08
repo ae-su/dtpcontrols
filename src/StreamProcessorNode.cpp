@@ -14,8 +14,6 @@
 
 UHAL_REGISTER_DERIVED_NODE(StreamProcessorNode)
 
-//NodeNameBuilder* nnb;
-
 StreamProcessorNode::StreamProcessorNode(const uhal::Node& node) : DTPNode(node){}
 
 StreamProcessorNode::~StreamProcessorNode(){}
