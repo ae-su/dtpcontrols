@@ -1,8 +1,8 @@
 
 #include "uhal/log/log.hpp"
-#include "DataReceptionNode.hpp"
+#include "dtpcontrols/DataReceptionNode.hpp"
 //#include "DummyComponent.hpp"
-#include "ControlNode.hpp"
+#include "dtpcontrols/ControlNode.hpp"
 #include <iostream>
 
 using namespace uhal;

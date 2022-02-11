@@ -25,7 +25,15 @@ public:
   virtual ~FlowMasterNode();
 
   void SourceSelect(const std::string&, const bool);
-  void SinkSelect(const std::string& , bool);
+  void SourceSelect(const uint32_t&, const bool);  
+  void SinkSelect(const std::string& , const bool);
+  void SinkSelect(const uint32_t&, bool);
+
+private:
+
+  bool Exists(const uint32_t&, const std::vector<uint32_t>&);
+  bool Exists(const std::string&, std::map<std::string, uint32_t>&);  
+
 };
 
 #endif // DTPCONTROLS_INCLUDE_DTPCONTROLS_FLOWMASTERNODE_HPP_

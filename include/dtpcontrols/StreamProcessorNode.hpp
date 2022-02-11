@@ -14,6 +14,7 @@
 #define DTPCONTROLS_INCLUDE_DTPCONTROLS_STREAMPROCESSORNODE_HPP_
 
 #include <cstdint>
+#include <uhal/ValMem.hpp>
 #define MASK_ENABLE 1
 #define MASK_DISABLE 0
 
@@ -27,12 +28,17 @@ public:
   explicit StreamProcessorNode(const uhal::Node& );
   virtual ~StreamProcessorNode();
 
-  void DropEmpty(bool);
-  void MaskChannels(uint64_t, bool); //TODO check bitshift, endble/diable
-  void MaskChannel00To31(uint32_t, bool); //TODO enable/disable
-  void MaskChannel32To63(uint32_t, bool); //TODO enable/disable  
-  void CapCounters(bool);
-  void SetThreshold(uint16_t, bool);
+  void DropEmpty(const bool);
+  void SetMaskChannels(const uint64_t, const bool, const bool);
+  void SetMaskChannel00To31(const uint32_t, const bool, const bool);
+  void SetMaskChannel32To63(const uint32_t, const bool,const bool);
+  void CapCounters(const bool);
+  void SetThreshold(const uint16_t, const bool);
+  const uhal::ValWord<uint32_t> GetMaskChannel00To31(const bool);
+  const uhal::ValWord<uint32_t> GetMaskChannel32To63(const bool);
+  const uhal::Node& GetMonProbeNode(const std::string&);
+  
 };
+
 
 #endif // DTPCONTROLS_INCLUDE_DTPCONTROLS_STREAMPROCESSORNODE_HPP_

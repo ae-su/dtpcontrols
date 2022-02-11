@@ -14,6 +14,7 @@
 #define DTPCONTROLS_INCLUDE_DTPCONTROLS_DTPNODE_HPP_
 
 #define DISPATCH_TRUE 1
+#define DISPATCH_FALSE 0
 
 // uhal includes
 #include "uhal/uhal.hpp"
