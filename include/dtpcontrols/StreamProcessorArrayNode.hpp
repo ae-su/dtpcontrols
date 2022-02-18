@@ -13,12 +13,14 @@
 #ifndef DTPCONTROLS_INCLUDE_DTPCONTROLS_STREAMPROCESSORARRAYNODE_HPP_
 #define DTPCONTROLS_INCLUDE_DTPCONTROLS_STREAMPROCESSORARRAYNODE_HPP_
 
-#include "dtpcontrols/DTPNode.hpp"
-#include "dtpcontrols/StreamProcessorNode.hpp"
-#include <cstdint>
-#include <uhal/Node.hpp>
+#include "uhal/DerivedNode.hpp"
 
-class StreamProcessorArrayNode : public DTPNode{
+#include "dtpcontrols/StreamProcessorNode.hpp"
+
+namespace dunedaq {
+namespace dtpcontrols {
+
+class StreamProcessorArrayNode : public uhal::Node {
 
   UHAL_DERIVEDNODE(StreamProcessorArrayNode)
   
@@ -30,5 +32,8 @@ public:
   void StreamSelect(const uint32_t, const bool);
   const uhal::Node& GetStreamProcessorNode(void);
 };
+
+} // namespace dtpcontrols
+} // namespace dunedaq
 
 #endif // DTPCONTROLS_INCLUDE_DTPCONTROLS_STREAMPROCESSORARRAYNODE_HPP_

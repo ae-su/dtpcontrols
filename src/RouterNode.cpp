@@ -6,17 +6,17 @@
  * received with this code.
  */
 
-//#include "logging/Logging.hpp"
-
 #include "dtpcontrols/RouterNode.hpp"
+
 #include "dtpcontrols/DataReceptionNode.hpp"
 #include "dtpcontrols/DPRNode.hpp"
-#include "dtpcontrols/DPRNode.hpp"
-#include <vector>
+
+namespace dunedaq {
+namespace dtpcontrols {
 
 UHAL_REGISTER_DERIVED_NODE(RouterNode)
 
-RouterNode::RouterNode(const uhal::Node& node) : DTPNode(node){}
+RouterNode::RouterNode(const uhal::Node& node) : uhal::Node(node) {}
 
 RouterNode::~RouterNode() {}
 
@@ -29,3 +29,5 @@ const uhal::Node &RouterNode::GetDPRNode(void) {
 
 }
 
+} // namespace dtpcontrols
+} // namespace dunedaq

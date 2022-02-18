@@ -6,18 +6,17 @@
  * received with this code.
  */
 
-//#include "logging/Logging.hpp"
-
 #include "dtpcontrols/DataReceptionNode.hpp"
+
+namespace dunedaq {
+namespace dtpcontrols {
 
 UHAL_REGISTER_DERIVED_NODE(DataReceptionNode)
 
-//NodeNameBuilder* nnb;
-
-DataReceptionNode::DataReceptionNode(const uhal::Node& node) : DTPNode(node){}
-
+DataReceptionNode::DataReceptionNode(const uhal::Node& node) : uhal::Node(node) {}
+  
 DataReceptionNode::~DataReceptionNode(){}
-
+  
 void DataReceptionNode::EnableDataReception(bool dispatch) {
   getNode("csr.ctrl.en").write(0x1);
   if(dispatch) {getClient().dispatch();}
@@ -86,3 +85,6 @@ uhal::ValWord<uint32_t> DataReceptionNode::SentPacketCount(bool dispatch) {
   if(dispatch) {getClient().dispatch();}  
   return lSPC;
 }
+
+} // namespace dtpcontrols
+} // namespace dunedaq

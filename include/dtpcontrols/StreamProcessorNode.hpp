@@ -13,14 +13,12 @@
 #ifndef DTPCONTROLS_INCLUDE_DTPCONTROLS_STREAMPROCESSORNODE_HPP_
 #define DTPCONTROLS_INCLUDE_DTPCONTROLS_STREAMPROCESSORNODE_HPP_
 
-#include <cstdint>
-#include <uhal/ValMem.hpp>
-#define MASK_ENABLE 1
-#define MASK_DISABLE 0
+#include "uhal/DerivedNode.hpp"
 
-#include "dtpcontrols/DTPNode.hpp"
+namespace dunedaq {
+namespace dtpcontrols {
 
-class StreamProcessorNode : public DTPNode{
+class StreamProcessorNode : public uhal::Node {
 
   UHAL_DERIVEDNODE(StreamProcessorNode)
   
@@ -36,8 +34,15 @@ public:
   void SetThreshold(const uint16_t, const bool);
   const uhal::ValWord<uint32_t> GetMaskChannel00To31(const bool);
   const uhal::ValWord<uint32_t> GetMaskChannel32To63(const bool);
+<<<<<<< HEAD
   
+=======
+  const uhal::Node& GetMonProbeNode(const std::string&);
+
+>>>>>>> 928243730bf340623a47b65f426a8e74ba90d05e
 };
 
+} // namespace dtpcontrols
+} // namespace dunedaq
 
 #endif // DTPCONTROLS_INCLUDE_DTPCONTROLS_STREAMPROCESSORNODE_HPP_

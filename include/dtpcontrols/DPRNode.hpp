@@ -13,9 +13,14 @@
 #ifndef DTPCONTROLS_INCLUDE_DTPCONTROLS_DPRNODE_HPP_
 #define DTPCONTROLS_INCLUDE_DTPCONTROLS_DPRNODE_HPP_
 
-#include "dtpcontrols/DTPNode.hpp"
+#include "uhal/DerivedNode.hpp"
 
-class DPRNode : public DTPNode{
+#include <string>
+
+namespace dunedaq {
+namespace dtpcontrols {
+
+class DPRNode : public uhal::Node {
 
   UHAL_DERIVEDNODE(DPRNode)
   
@@ -30,5 +35,7 @@ public:
 		   const uint32_t &mux_out_choice, const bool dispatch);
 };
 
+} // namespace dtpcontrols
+} // namespace dunedaq
 
 #endif // DTPCONTROLS_INCLUDE_DTPCONTROLS_DPRNODE_HPP_

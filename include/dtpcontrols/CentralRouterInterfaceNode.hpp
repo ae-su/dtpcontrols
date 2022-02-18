@@ -14,9 +14,12 @@
 #ifndef DTPCONTROLS_INCLUDE_DTPCONTROLS_CENTRALROUTERINTERFACENODE_HPP_
 #define DTPCONTROLS_INCLUDE_DTPCONTROLS_CENTRALROUTERINTERFACENODE_HPP_
 
-#include "dtpcontrols/DTPNode.hpp"
+#include "uhal/DerivedNode.hpp"
 
-class CentralRouterInterfaceNode : public DTPNode{
+namespace dunedaq {
+namespace dtpcontrols {
+
+class CentralRouterInterfaceNode : public uhal::Node {
 
   UHAL_DERIVEDNODE(CentralRouterInterfaceNode)
   
@@ -27,5 +30,8 @@ public:
   void EnableRouterInterface(bool);
   void DropEmpty(bool);
 };
+
+} // namespace dtpcontrols
+} // namespace dunedaq
 
 #endif // DTPCONTROLS_INCLUDE_DTPCONTROLS_CENTRALROUTERINTERFACENODE_HPP_

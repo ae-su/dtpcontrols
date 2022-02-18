@@ -6,18 +6,14 @@
  * received with this code.
  */
 
-#include <exception>
-
-//#include "logging/logging.hpp"
-
 #include "dtpcontrols/ControlNode.hpp"
 
+namespace dunedaq {
+namespace dtpcontrols {
 
 UHAL_REGISTER_DERIVED_NODE(ControlNode)
 
-//NodeNameBuilder* nnb;
-
-ControlNode::ControlNode(const uhal::Node& node) : DTPNode(node){}
+ControlNode::ControlNode(const uhal::Node& node) : uhal::Node(node) {}
 
 ControlNode::~ControlNode(){}
 
@@ -36,3 +32,6 @@ void ControlNode::MasterReset(bool dispatch) {
   if(dispatch) {getClient().dispatch();}
   
 }
+
+} // namespace dtpcontrols
+} // namespace dunedaq
