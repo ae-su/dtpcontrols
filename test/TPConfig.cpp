@@ -17,7 +17,7 @@ int main(int argc, char const* argv[]) {
 
   uhal::setLogLevelTo(uhal::Debug());
   const std::string lConnectionFile = "file://" + std::string(argv[1]);
-  const std::string lDevice = "U-SIMUDP-JS";
+  const std::string lDevice = "U-SIMUDP";
   uhal::ConnectionManager cm(lConnectionFile); //, {"ipbusflx-2.0"})
   uhal::HwInterface flx = cm.getDevice(lDevice);
 
@@ -50,11 +50,11 @@ int main(int argc, char const* argv[]) {
   uint32_t threshold = 20;
   for (auto& lnk : links) {
     //auto lDRlinkproc0 = flx.getNode<DataReceptionNode>("linkproc0.drtr.dr");
-    auto streamProcArrayCS = flx.getNode<StreamProcessorArrayNode>(lnk+"stream_procs");
-    auto streamProcCSR = flx.getNode<StreamProcessorNode>(lnk+"stream_procs.stream_proc");
+    auto streamProcArrayNode = flx.getNode<StreamProcessorArrayNode>(lnk+"stream_procs");
+    auto streamProcNode = flx.getNode<StreamProcessorNode>(lnk+"stream_procs.stream_proc");
     for (uint32_t i=0; i<=lFirmwareInfo["n_port"]; i++){
-      streamProcCSR.SetThreshold(threshold, DISPATCH_FALSE);
-      streamProcArrayCS.StreamSelect(i, DISPATCH_TRUE);
+      streamProcNode.SetThreshold(threshold, DISPATCH_FALSE);
+      streamProcArrayNode.StreamSelect(i, DISPATCH_TRUE);
     }
     flx.getClient().dispatch();
   }
@@ -64,17 +64,16 @@ int main(int argc, char const* argv[]) {
   uint32_t channel_finsih{63};
   uint64_t mask_word;
   for (auto& lnk : links) {
-    auto streamProcCSR = flx.getNode<StreamProcessorNode>(lnk+"stream_procs.stream_proc");
-    auto streamProcArrayCS = flx.getNode<StreamProcessorArrayNode>(lnk+"stream_procs");
+    auto streamProcNode = flx.getNode<StreamProcessorNode>(lnk+"stream_procs.stream_proc");
+    auto streamProcArrayNode = flx.getNode<StreamProcessorArrayNode>(lnk+"stream_procs");
     mask_word = 0x0;
     for (uint32_t j=channel_start; j<=channel_finsih; j++){
       mask_word |= (1<<j);
     }
     for (uint32_t i=0; i<=lFirmwareInfo["n_port"]; i++){
-      streamProcArrayCS.StreamSelect(i, DISPATCH_FALSE);
-      streamProcCSR.SetMaskChannel00To31(mask_word, DISPATCH_TRUE, MASK_ENABLE);
-      streamProcCSR.SetMaskChannel32To63(mask_word>>32, DISPATCH_TRUE, MASK_ENABLE);
-      streamProcArrayCS.getNode("csr.stream_sel").write(i);
+      streamProcArrayNode.StreamSelect(i, DISPATCH_FALSE);
+      streamProcNode.SetMaskChannel00To31(mask_word, DISPATCH_TRUE, MASK_ENABLE);
+      streamProcNode.SetMaskChannel32To63(mask_word>>32, DISPATCH_TRUE, MASK_ENABLE);
     }
     flx.getClient().dispatch();
   }
@@ -89,11 +88,11 @@ int main(int argc, char const* argv[]) {
     dprNode.SetMuxOut(mux_out, DISPATCH_FALSE);
     auto drNode = flx.getNode<DataReceptionNode>(lnk+"drtr.dr");
     drNode.EnableDataReception(DISPATCH_FALSE);
-    auto streamProcArrayCS = flx.getNode<StreamProcessorArrayNode>(lnk+"stream_procs");
-    auto streamProcCSR = flx.getNode<StreamProcessorNode>(lnk+"stream_procs.stream_proc");
+    auto streamProcArrayNode = flx.getNode<StreamProcessorArrayNode>(lnk+"stream_procs");
+    auto streamProcNode = flx.getNode<StreamProcessorNode>(lnk+"stream_procs.stream_proc");
     for (uint32_t i=0; i<=lFirmwareInfo["n_port"]; i++){
-      streamProcArrayCS.StreamSelect(i, DISPATCH_FALSE);
-      streamProcCSR.DropEmpty(DISPATCH_FALSE);
+      streamProcArrayNode.StreamSelect(i, DISPATCH_FALSE);
+      streamProcNode.DropEmpty(DISPATCH_FALSE);
     }
     flx.getClient().dispatch();
   }  
