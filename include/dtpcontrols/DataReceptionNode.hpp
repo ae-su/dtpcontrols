@@ -13,10 +13,13 @@
 #ifndef DTPCONTROLS_INCLUDE_DTPCONTROLS_DATARECEPTIONNODE_HPP_
 #define DTPCONTROLS_INCLUDE_DTPCONTROLS_DATARECEPTIONNODE_HPP_
 
+#include "uhal/DerivedNode.hpp"
+//#include "uhal/ValMem.hpp"
 
-#include "dtpcontrols/DTPNode.hpp"
+namespace dunedaq {
+namespace dtpcontrols {
 
-class DataReceptionNode : public DTPNode{
+class DataReceptionNode : public uhal::Node {
 
   UHAL_DERIVEDNODE(DataReceptionNode)
   
@@ -36,5 +39,8 @@ public:
   uhal::ValWord<uint32_t> SentWordCount(bool);
   uhal::ValWord<uint32_t> SentPacketCount(bool);
 };
+
+} // namespace dtpcontrols
+} // namespace dunedaq
 
 #endif // DTPCONTROLS_INCLUDE_DTPCONTROLS_DATARECEPTIONNODE_HPP_

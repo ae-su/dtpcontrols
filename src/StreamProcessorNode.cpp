@@ -15,9 +15,12 @@
 #include <uhal/ValMem.hpp>
 #include <vector>
 
+namespace dunedaq {
+namespace dtpcontrols {
+
 UHAL_REGISTER_DERIVED_NODE(StreamProcessorNode)
 
-StreamProcessorNode::StreamProcessorNode(const uhal::Node& node) : DTPNode(node){}
+StreamProcessorNode::StreamProcessorNode(const uhal::Node& node) : uhal::Node(node) {}
 
 StreamProcessorNode::~StreamProcessorNode(){}
 
@@ -32,15 +35,17 @@ void StreamProcessorNode::CapCounters(const bool dispatch) {
 }
 
 void StreamProcessorNode::SetThreshold(const uint16_t threshold, const bool dispatch) {
+
   if (threshold > 0 && threshold < 0x7fff){ // from hfButler; set in firmware JS thinks
-  getNode("csr.hitfinder.threshold").write(threshold);
-  if(dispatch) {getClient().dispatch();}
+    getNode("csr.hitfinder.threshold").write(threshold);
+    if(dispatch) {getClient().dispatch();}
   }
   else {} //placeholder for ERS error
 }
 
-void StreamProcessorNode::SetMaskChannel00To31(const uint32_t mask00to31, const bool dispatch,
-					    const bool mask_en_dsbl=MASK_ENABLE) {
+void StreamProcessorNode::SetMaskChannel00To31(const uint32_t mask00to31,
+					       const bool dispatch,
+					       const bool mask_en_dsbl=true) {
   if (mask_en_dsbl) {
     getNode("csr.mask.ch-00-31").write(mask00to31);
   }
@@ -50,8 +55,9 @@ void StreamProcessorNode::SetMaskChannel00To31(const uint32_t mask00to31, const 
   if(dispatch) {getClient().dispatch();}  
 }
 
-void StreamProcessorNode::SetMaskChannel32To63(const uint32_t mask32to63, const bool dispatch,
-					    const bool mask_en_dsbl=MASK_ENABLE) {
+void StreamProcessorNode::SetMaskChannel32To63(const uint32_t mask32to63,
+					       const bool dispatch,
+					       const bool mask_en_dsbl=true) {
   if (mask_en_dsbl){
     getNode("csr.mask.ch-00-31").write(mask32to63);    
   }
@@ -61,15 +67,16 @@ void StreamProcessorNode::SetMaskChannel32To63(const uint32_t mask32to63, const 
   if(dispatch) {getClient().dispatch();}
 }
 
-void StreamProcessorNode::SetMaskChannels(const uint64_t msb00to31_lsb31to64, const bool dispatch,
-					    const bool mask_en_dsbl=MASK_ENABLE) {
+void StreamProcessorNode::SetMaskChannels(const uint64_t msb00to31_lsb31to64,
+					  const bool dispatch,
+					  const bool mask_en_dsbl=true) {
   if (mask_en_dsbl){
-  SetMaskChannel32To63(msb00to31_lsb31to64, dispatch);
-  SetMaskChannel00To31(msb00to31_lsb31to64 >> 32, dispatch);
+    SetMaskChannel32To63(msb00to31_lsb31to64, dispatch);
+    SetMaskChannel00To31(msb00to31_lsb31to64 >> 32, dispatch);
   }
   else {
-  SetMaskChannel32To63(~msb00to31_lsb31to64, dispatch);
-  SetMaskChannel00To31(~msb00to31_lsb31to64 >> 32, dispatch);
+    SetMaskChannel32To63(~msb00to31_lsb31to64, dispatch);
+    SetMaskChannel00To31(~msb00to31_lsb31to64 >> 32, dispatch);
   }
 }
 
@@ -92,3 +99,6 @@ StreamProcessorNode::GetMonProbeNode(const std::string &mon_probe_name) {
     return getNode<MonProbeNode>(mon_probe_name);
   else {return getNode("");} // add ERS message and return empty node to propagate failure upward.
 }
+
+} // namespace dtpcontrols
+} // namespace dunedaq

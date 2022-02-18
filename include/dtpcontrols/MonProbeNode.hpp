@@ -13,10 +13,12 @@
 #ifndef DTPCONTROLS_INCLUDE_DTPCONTROLS_MONPROBENODE_HPP_
 #define DTPCONTROLS_INCLUDE_DTPCONTROLS_MONPROBENODE_HPP_
 
+#include "uhal/DerivedNode.hpp"
 
-#include "dtpcontrols/DTPNode.hpp"
+namespace dunedaq {
+namespace dtpcontrols {
 
-class MonProbeNode : public DTPNode{
+class MonProbeNode : public uhal::Node {
 
   UHAL_DERIVEDNODE(MonProbeNode)
   
@@ -32,5 +34,8 @@ public:
   uhal::ValWord<uint32_t> PacketCount(bool);
   uhal::ValWord<uint32_t> AXIError(bool);
 };
+
+} // namespace dtpcontrols
+} // namespace dunedaq
 
 #endif // DTPCONTROLS_INCLUDE_DTPCONTROLS_MONPROBENODE_HPP_

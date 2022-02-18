@@ -6,16 +6,16 @@
  * received with this code.
  */
 
-//#include "logging/Logging.hpp"
+#include "dtpcontrols/DPRNode.hpp"
 
-#include "dtpcontrols/DPRNode.hpp"
-#include "dtpcontrols/MonProbeNode.hpp"
-#include "dtpcontrols/DPRNode.hpp"
-#include <vector>
+#include <map>
+
+namespace dunedaq {
+namespace dtpcontrols {
 
 UHAL_REGISTER_DERIVED_NODE(DPRNode)
 
-DPRNode::DPRNode(const uhal::Node& node) : DTPNode(node){}
+DPRNode::DPRNode(const uhal::Node& node) : uhal::Node(node) {}
 
 DPRNode::~DPRNode() {}
 
@@ -40,3 +40,6 @@ void DPRNode::SetMuxInOut(std::string &mux_choice, const bool dispatch) {
   }
   else{} //placeholder for ERS
 }
+
+} // namespace dtpcontrols
+} // namespace dunedaq

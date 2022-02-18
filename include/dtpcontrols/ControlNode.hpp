@@ -13,10 +13,12 @@
 #ifndef DTPCONTROLS_INCLUDE_DTPCONTROLS_CONTROLNODENODE_HPP_
 #define DTPCONTROLS_INCLUDE_DTPCONTROLS_CONTROLNODENODE_HPP_
 
+#include "uhal/DerivedNode.hpp"
 
-#include "DTPNode.hpp"
+namespace dunedaq {
+namespace dtpcontrols {
 
-class ControlNode : public DTPNode{
+class ControlNode : public uhal::Node {
 
   UHAL_DERIVEDNODE(ControlNode)
   
@@ -28,5 +30,8 @@ public:
   void SoftReset(bool);
   void MasterReset(bool);
 };
+
+} // namespace dtpcontrols
+} // namespace dunedaq
 
 #endif // DTPCONTROLS_INCLUDE_DTPCONTROLS_CONTROLNODE_HPP_

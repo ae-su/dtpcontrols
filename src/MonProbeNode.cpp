@@ -6,15 +6,14 @@
  * received with this code.
  */
 
-//#include "logging/Logging.hpp"
-
 #include "dtpcontrols/MonProbeNode.hpp"
+
+namespace dunedaq {
+namespace dtpcontrols {
 
 UHAL_REGISTER_DERIVED_NODE(MonProbeNode)
 
-//NodeNameBuilder* nnb;
-
-MonProbeNode::MonProbeNode(const uhal::Node& node) : DTPNode(node){}
+MonProbeNode::MonProbeNode(const uhal::Node& node) : uhal::Node(node) {}
 
 MonProbeNode::~MonProbeNode(){}
 
@@ -66,3 +65,6 @@ uhal::ValWord<uint32_t> MonProbeNode::AXIError(bool dispatch) {
   if(dispatch) {getClient().dispatch();}  
   return lAXIError;
 }
+
+} // namespace dtpcontrols
+} // namespace dunedaq

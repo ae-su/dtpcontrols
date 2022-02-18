@@ -14,9 +14,16 @@
 #ifndef DTPCONTROLS_INCLUDE_DTPCONTROLS_FLOWMASTERNODE_HPP_
 #define DTPCONTROLS_INCLUDE_DTPCONTROLS_FLOWMASTERNODE_HPP_
 
-#include "dtpcontrols/DTPNode.hpp"
+#include "uhal/DerivedNode.hpp"
 
-class FlowMasterNode : public DTPNode{
+#include <vector>
+#include <map>
+#include <string>
+
+namespace dunedaq {
+namespace dtpcontrols {
+
+class FlowMasterNode : public uhal::Node {
 
   UHAL_DERIVEDNODE(FlowMasterNode)
   
@@ -35,5 +42,8 @@ private:
   bool Exists(const std::string&, std::map<std::string, uint32_t>&);  
 
 };
+
+} // namespace dtpcontrols
+} // namespace dunedaq
 
 #endif // DTPCONTROLS_INCLUDE_DTPCONTROLS_FLOWMASTERNODE_HPP_

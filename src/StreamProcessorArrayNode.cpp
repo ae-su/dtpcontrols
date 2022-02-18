@@ -6,15 +6,14 @@
  * received with this code.
  */
 
-//#include "logging/Logging.hpp"
-
 #include "dtpcontrols/StreamProcessorArrayNode.hpp"
-#include "dtpcontrols/MonProbeNode.hpp"
-#include <cstdint>
+
+namespace dunedaq {
+namespace dtpcontrols {
 
 UHAL_REGISTER_DERIVED_NODE(StreamProcessorArrayNode)
 
-StreamProcessorArrayNode::StreamProcessorArrayNode(const uhal::Node& node) : DTPNode(node){}
+StreamProcessorArrayNode::StreamProcessorArrayNode(const uhal::Node& node) : uhal::Node(node) {}
 
 StreamProcessorArrayNode::~StreamProcessorArrayNode(){}
 
@@ -32,3 +31,5 @@ const uhal::Node &StreamProcessorArrayNode::GetStreamProcessorNode(void) {
   return getNode<StreamProcessorNode>("stream_proc");
 }
 
+} // namespace dtpcontrols
+} // namespace dunedaq

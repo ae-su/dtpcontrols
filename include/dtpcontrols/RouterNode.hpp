@@ -14,9 +14,12 @@
 #ifndef DTPCONTROLS_INCLUDE_DTPCONTROLS_ROUTERNODE_HPP_
 #define DTPCONTROLS_INCLUDE_DTPCONTROLS_ROUTERNODE_HPP_
 
-#include "dtpcontrols/DTPNode.hpp"
+#include "uhal/DerivedNode.hpp"
 
-class RouterNode : public DTPNode{
+namespace dunedaq {
+namespace dtpcontrols {
+
+class RouterNode : public uhal::Node {
 
   UHAL_DERIVEDNODE(RouterNode)
   
@@ -26,7 +29,10 @@ public:
 
   const uhal::Node & GetDataReceptionNode(void);
   const uhal::Node & GetDPRNode(void);
-  //const uhal::Node & UnpackerNode(const std::string&, const bool);
+
 };
+
+} // namespace dtpcontrols
+} // namespace dunedaq
 
 #endif // DTPCONTROLS_INCLUDE_DTPCONTROLS_ROUTERNODE_HPP_
