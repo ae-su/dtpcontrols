@@ -20,13 +20,19 @@ DPRNode::DPRNode(const uhal::Node& node) : DTPNode(node){}
 DPRNode::~DPRNode() {}
 
 void DPRNode::SetMuxIn(const uint32_t &mux_in_choice, const bool dispatch) {
-  if (mux_in_choice == 0 || 1) getNode("csr.ctrl.config.mux_in").write(mux_in_choice);
-  if (dispatch) getClient().dispatch();
+  if (mux_in_choice == 0 || 1) {
+    getNode("csr.ctrl.config.mux_in").write(mux_in_choice);
+    if (dispatch) getClient().dispatch();
+  }
+  else {} // placeholder for ERS
 }
 
 void DPRNode::SetMuxOut(const uint32_t &mux_out_choice, const bool dispatch) {
-  if (mux_out_choice == 0 || 1) getNode("csr.ctrl.config.mux_out").write(mux_out_choice);
-  if (dispatch) getClient().dispatch();
+  if (mux_out_choice == 0 || 1) {
+    getNode("csr.ctrl.config.mux_out").write(mux_out_choice);
+    if (dispatch) getClient().dispatch();
+  }
+  else {} // placeholder for ERS
 }
 
 void DPRNode::SetMuxInOut(std::string &mux_choice, const bool dispatch) {
@@ -38,5 +44,5 @@ void DPRNode::SetMuxInOut(std::string &mux_choice, const bool dispatch) {
     getNode("csr.ctrl.config.mux_in").write(mux_out[mux_choice]);
     if(dispatch) getClient().dispatch();
   }
-  else{} //placeholder for ERS
+  else {} //placeholder for ERS
 }

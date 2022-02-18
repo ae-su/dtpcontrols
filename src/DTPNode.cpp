@@ -7,13 +7,20 @@
  */
 
 #include "dtpcontrols/DTPNode.hpp"
+#include <uhal/HwInterface.hpp>
+#include <uhal/ValMem.hpp>
 
-DTPNode::DTPNode(const uhal::Node& node) : uhal::Node(node) {};
+DTPNode::DTPNode(const uhal::Node &node) : uhal::Node(node) {};
+DTPNode::~DTPNode(){};
 
-DTPNode::~DTPNode() {};
+std::map<std::string, uhal::ValWord<uint32_t>>
+    DTPNode::GetFirmwareConfigInfo(uhal::HwInterface& Iface) {
 
-/*
-template <> void DTP::WriteReg(const Response<uint32_t> & lNodePath){};
-
-template<> void DTP::ReadReg(const Response<uint32_t> & lNodePath) {};
-*/
+  std::vector<std::string> infoNodes{Iface.getNodes("info.id.config")};
+  std::map<std::string, uhal::ValWord<uint32_t>> ConfigVals;
+  for (const auto& node : infoNodes) {
+    ConfigVals.insert({node, getNode(node).read()});
+  }
+  getClient().dispatch();
+  return ConfigVals;
+  };

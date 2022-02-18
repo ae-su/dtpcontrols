@@ -85,10 +85,3 @@ const uhal::ValWord<uint32_t> StreamProcessorNode::GetMaskChannel32To63(const bo
   return m32To63;
 }
 
-const uhal::Node &
-StreamProcessorNode::GetMonProbeNode(const std::string &mon_probe_name) {
-  std::vector<std::string> monprobes {"po", "p1", "p2", "p3", "p4", "p5"};
-  if( std::find(monprobes.begin(), monprobes.end(), mon_probe_name) != monprobes.end())
-    return getNode<MonProbeNode>(mon_probe_name);
-  else {return getNode("");} // add ERS message and return empty node to propagate failure upward.
-}
