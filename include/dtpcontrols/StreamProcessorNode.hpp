@@ -14,7 +14,6 @@
 #define DTPCONTROLS_INCLUDE_DTPCONTROLS_STREAMPROCESSORNODE_HPP_
 
 #include "uhal/DerivedNode.hpp"
-//#include "uhal/ValMem.hpp"
 
 namespace dunedaq {
 namespace dtpcontrols {

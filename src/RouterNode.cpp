@@ -6,13 +6,10 @@
  * received with this code.
  */
 
-//#include "logging/Logging.hpp"
-
 #include "dtpcontrols/RouterNode.hpp"
+
 #include "dtpcontrols/DataReceptionNode.hpp"
 #include "dtpcontrols/DPRNode.hpp"
-#include "dtpcontrols/DPRNode.hpp"
-#include <vector>
 
 namespace dunedaq {
 namespace dtpcontrols {

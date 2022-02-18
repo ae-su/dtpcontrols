@@ -6,11 +6,9 @@
  * received with this code.
  */
 
-//#include <cstdint>
-#include <stdint.h>
-#include <map>
-
 #include "dtpcontrols/FlowMasterNode.hpp"
+
+#include <map>
 
 namespace dunedaq {
 namespace dtpcontrols {

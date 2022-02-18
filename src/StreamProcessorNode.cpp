@@ -6,13 +6,9 @@
  * received with this code.
  */
 
-//#include "logging/Logging.hpp"
-
 #include "dtpcontrols/StreamProcessorNode.hpp"
 #include "dtpcontrols/MonProbeNode.hpp"
 #include <algorithm>
-#include <cstdint>
-#include <uhal/ValMem.hpp>
 #include <vector>
 
 namespace dunedaq {
