@@ -1,0 +1,4 @@
+<node id="linkproc" description="Link processor" fwinfo="endpoint">
+    <node id="drtr" address="0x0" fwinfo="endpoint;width=6" module="file://dtpc_drouter.xml"/>
+    <node id="stream_procs" address="0x40" fwinfo="endpoint;width=6" module="file://stream_processor_array.xml"/>
+</node>
