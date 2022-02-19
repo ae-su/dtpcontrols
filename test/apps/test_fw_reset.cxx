@@ -10,9 +10,16 @@ using namespace dunedaq::dtpcontrols;
 
 int main(int argc, char const* argv[]) {
 
+  std::string conn_string = std::string("file://") + std::string(getenv("DTP_SHARE")) + std::string("/config/etc/connections.xml");
+  if (argc > 2) {
+    conn_string = std::string(argv[2]);
+  }
+  
+  std::cout << conn_string << std::endl;
+
   uhal::setLogLevelTo(uhal::Debug());
-  uhal::ConnectionManager cm("file://" + std::string(argv[1])); //, {"ipbusflx-2.0"})
-  uhal::HwInterface flx = cm.getDevice("U-SIMUDP-JS");
+  uhal::ConnectionManager cm(conn_string, {"ipbusflx-2.0"});
+  uhal::HwInterface flx = cm.getDevice(std::string(argv[1]));
 
   auto lCtrlNode = flx.getNode<ControlNode>("ctrl");
   lCtrlNode.SoftReset(true);
