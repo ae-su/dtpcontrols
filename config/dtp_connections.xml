@@ -3,17 +3,7 @@
 <connections>
   <connection id="flx-0-p2-hf"  uri="ipbusflx-2.0:///dev/flx:0" address_table="file://addrtab/v133/ultimate/dtpc_pod.xml" />
   <connection id="flx-1-p2-hf"  uri="ipbusflx-2.0:///dev/flx:1" address_table="file://addrtab/v133/ultimate/dtpc_pod.xml" />
-
-  <connection id="SIM"       uri="ipbusudp-2.0://192.168.231.128:50001" address_table="file://addrtab/tpgen-1fibre/top.xml" />
-  <connection id="SIMUDP"    uri="ipbusudp-2.0://localhost:50001" address_table="file://addrtab/tpgen-1fibre-wibtor/top_wibtor.xml" />
-  <connection id="ZCU"       uri="ipbusudp-2.0://192.168.200.192:50001" address_table="file://addrtab/tpgen-1fibre/top.xml" />
-  <connection id="ZCU-NP04"  uri="ipbusudp-2.0://192.168.200.99:50001" address_table="file://addrtab/tpgen-1fibre-wibtor/top_wibtor.xml" />
-  <connection id="flx-1-south-hf"  uri="ipbusflx-2.0:///dev/flx:0" address_table="file://addrtab/fullchain-test/top.xml" />
-  <connection id="flx-1-north-hf"  uri="ipbusflx-2.0:///dev/flx:1" address_table="file://addrtab/fullchain-test/top.xml" />
-  <connection id="FC-ZCU"    uri="ipbusudp-2.0://192.168.99.207:50001" address_table="file://addrtab/fullchain-test/top.xml" />
-  <connection id="FC-SIMUDP" uri="ipbusudp-2.0://localhost:50001" address_table="file://addrtab/fullchain-test/top.xml" />
-  <connection id="WIB-SIMUDP" uri="ipbusudp-2.0://localhost:50001" address_table="file://addrtab/wibulator_test/top.xml" />
+  <connection id="flx-2-p2-hf"  uri="ipbusflx-2.0:///dev/flx:2" address_table="file://addrtab/v133/ultimate/dtpc_pod.xml" />
+  <connection id="flx-3-p2-hf"  uri="ipbusflx-2.0:///dev/flx:3" address_table="file://addrtab/v133/ultimate/dtpc_pod.xml" />
   <connection id="U-SIMUDP" uri="ipbusudp-2.0://localhost:50001" address_table="file://addrtab/ultimate/dtpc_pod.xml" />
-
-
 </connections>
