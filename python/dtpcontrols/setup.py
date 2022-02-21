@@ -1,13 +1,15 @@
 # eveyrthing to do with ipbus connection to the device goes here...
 
 import os
+import string
 import uhal
 from ctypes import cdll
 
-def connectionManager(conn_file=os.environ['CONNECTION_FILE']):
+def connectionManager(conn_file):
+
     uhal.setLogLevelTo(uhal.LogLevel.WARNING)
     conn_file = "file://"+conn_file
-    
+
     try:
         cdll.LoadLibrary("libuhallibs.so")
         manager = uhal.ConnectionManager(conn_file, ['ipbusflx-2.0'])
@@ -15,14 +17,6 @@ def connectionManager(conn_file=os.environ['CONNECTION_FILE']):
         manager = uhal.ConnectionManager(conn_file)
 
     return manager
-
-
-def init(conn_file, device):
-
-    manager = connectionManager(conn_file)
-
-    hw = manager.getDevice(str(device))
-    return hw
 
 
 def softReset(ctrlNode):
