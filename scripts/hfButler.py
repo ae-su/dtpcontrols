@@ -4,6 +4,7 @@ from pkg_resources import parse_version
 
 import click
 import time
+import os
 
 import dtpcontrols.toolbox as toolbox
 import dtpcontrols.setup as setup
@@ -11,7 +12,6 @@ import dtpcontrols.dpr as dpr
 import dtpcontrols.dr as dr
 import dtpcontrols.cr as cr
 import dtpcontrols.wibulator as wibulator
-
 
 from dtpcontrols.toolbox import dumpSubRegs, printRegTable, printDictTable, readStreamProcessorStatus
 
@@ -28,10 +28,9 @@ def get_devices(ctx, args, incomplete):
 
 extra_autocompl = {'autocompletion': get_devices} if parse_version(click.__version__) >= parse_version('7.0') else {}
 
-
 @click.group(context_settings=CONTEXT_SETTINGS, invoke_without_command=True)
 @click.option('-e', '--exception-stack', 'aExcStack', is_flag=True, help="Display full exception stack")
-@click.option('-c', '--connection', type=click.Path(exists=True), envvar='CONNECTION_FILE')
+@click.option('-c', '--connection', type=click.Path(exists=True), default=setup.find_conn_file())
 @click.argument('device', **extra_autocompl)
 @click.pass_context
 @click.version_option(version='ultimate')

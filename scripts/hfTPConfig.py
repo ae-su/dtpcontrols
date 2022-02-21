@@ -27,7 +27,7 @@ def get_devices(ctx, args, incomplete):
 extra_autocompl = {'autocompletion': get_devices} if parse_version(click.__version__) >= parse_version('7.0') else {}
 
 @click.command(context_settings=CONTEXT_SETTINGS)
-@click.option('-c', '--connection', type=click.Path(exists=True), envvar='CONNECTION_FILE')
+@click.option('-c', '--connection', type=click.Path(exists=True), default=setup.find_conn_file())
 @click.argument('device', **extra_autocompl)
 @click.argument('pipes', callback=gen_range_validator(0, 4))
 @click.option('--mask', callback=gen_range_validator(0, 64), default=None)
