@@ -1,5 +1,6 @@
 #include "dtpcontrols/DataReceptionNode.hpp"
-#include "dtpcontrols/ControlNode.hpp"
+//#include "dtpcontrols/ControlNode.hpp"
+#include "dtpcontrols/DTPPodNode.hpp"
 
 #include "uhal/uhal.hpp"
 
@@ -10,7 +11,7 @@ using namespace dunedaq::dtpcontrols;
 
 int main(int argc, char const* argv[]) {
 
-  std::string conn_string = std::string("file://") + std::string(getenv("DTP_SHARE")) + std::string("/config/etc/connections.xml");
+  std::string conn_string = std::string("file://") + std::string(getenv("DTP_SHARE")) + std::string("/config/connections.xml");
   if (argc > 2) {
     conn_string = std::string(argv[2]);
   }
@@ -21,7 +22,10 @@ int main(int argc, char const* argv[]) {
   uhal::ConnectionManager cm(conn_string, {"ipbusflx-2.0"});
   uhal::HwInterface flx = cm.getDevice(std::string(argv[1]));
 
-  auto lCtrlNode = flx.getNode<ControlNode>("ctrl");
+  auto lDTPPodNode = flx.getNode<DTPPodNode>("TOP");
+  std::cout << lDTPPodNode.getNodes() << std::endl;
+
+  /*  auto lCtrlNode = flx.getNode<ControlNode>("ctrl");
   lCtrlNode.SoftReset(true);
   lCtrlNode.MasterReset(true);
 
@@ -50,5 +54,7 @@ int main(int argc, char const* argv[]) {
   lDRlinkproc4.ResetInputWordCounter(true);
   lDRlinkproc4.ResetOutputWordCounter(true);
   lDRlinkproc4.ErrorReset(true);
+
+  */
 }
 

@@ -1,12 +1,12 @@
 /**
- * @file ExampleNode.cpp
+ * @file DTPPodNode.cpp
  *
  * This is part of the DUNE DAQ Software Suite, copyright 2020.
  * Licensing/copyright details are in the COPYING file that you should have
  * received with this code.
  */
 
-#include "dtpcontrols/ExampleNode.hpp"
+#include "dtpcontrols/DTPPodNode.hpp"
 
 #include "logging/Logging.hpp"
 
@@ -16,21 +16,21 @@
 namespace dunedaq {
 namespace dtpcontrols {
 
-UHAL_REGISTER_DERIVED_NODE(ExampleNode)
+UHAL_REGISTER_DERIVED_NODE(DTPPodNode)
 
 //-----------------------------------------------------------------------------
-ExampleNode::ExampleNode(const uhal::Node& node)
+DTPPodNode::DTPPodNode(const uhal::Node& node)
   : uhal::Node(node)
 {}
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
-ExampleNode::~ExampleNode() {}
+DTPPodNode::~DTPPodNode() {}
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 std::string
-ExampleNode::get_status(bool print_out) const
+DTPPodNode::get_status(bool print_out) const
 {
   auto subnodes = read_sub_nodes(getNode("csr.stat"));
   std::stringstream status;
@@ -46,7 +46,7 @@ ExampleNode::get_status(bool print_out) const
 
 //-----------------------------------------------------------------------------
 std::map<std::string, uhal::ValWord<uint32_t>> // NOLINT(build/unsigned)
-ExampleNode::read_sub_nodes(const uhal::Node& node, bool dispatch) const
+DTPPodNode::read_sub_nodes(const uhal::Node& node, bool dispatch) const
 {
   auto node_names = node.getNodes();
 
@@ -62,7 +62,7 @@ ExampleNode::read_sub_nodes(const uhal::Node& node, bool dispatch) const
 
 //-----------------------------------------------------------------------------
 void
-ExampleNode::reset_sub_nodes(const uhal::Node& node, uint32_t aValue, bool dispatch) const // NOLINT(build/unsigned)
+DTPPodNode::reset_sub_nodes(const uhal::Node& node, uint32_t aValue, bool dispatch) const // NOLINT(build/unsigned)
 {
 
   auto node_names = node.getNodes();
