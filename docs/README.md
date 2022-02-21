@@ -13,7 +13,7 @@ cd workDir/sourcecode
 git clone https://github.com/DUNE-DAQ/dtpcontrols.git -b python_fixes
 git clone https://github.com/DUNE-DAQ/uhallibs.git
 dbt-workarea-env
-dbt-build.p
+dbt-build.py
 ```
 
 For more info on setup and build, see : 
