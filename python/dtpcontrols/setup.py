@@ -5,6 +5,22 @@ import string
 import uhal
 from ctypes import cdll
 
+def find_conn_file():
+    path = os.environ.get('DUNEDAQ_SHARE_PATH')
+    name = 'dtp_connections.xml'
+    result = []
+
+    for dir in path.split(':'):
+        for root, ds, fs in os.walk(dir):
+            if name in fs:
+                result.append(os.path.join(root, name))
+
+    if len(result)>1:
+        print("Multiple connection files!")
+
+    return result[0]
+
+
 def connectionManager(conn_file):
 
     uhal.setLogLevelTo(uhal.LogLevel.WARNING)

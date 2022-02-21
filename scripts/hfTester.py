@@ -27,7 +27,7 @@ extra_autocompl = {'autocompletion': get_devices} if parse_version(click.__versi
 
 
 @click.command(context_settings=CONTEXT_SETTINGS)
-@click.option('-c', '--connection', type=click.Path(exists=True), envvar='CONNECTION_FILE')
+@click.option('-c', '--connection', type=click.Path(exists=True), default=setup.find_conn_file())
 @click.argument('device', **extra_autocompl)
 @click.argument('step', type=click.Choice(['reset', 'config', 'flush']))
 def cli(connection, device, step):
