@@ -12,6 +12,13 @@
 #define DTPCONTROLS_INCLUDE_DTPCONTROLS_DTPPODNODE_HPP_
 
 // dtpcontrols Headers
+//#include "dtpcontrols/InfoNode.hpp"
+#include "dtpcontrols/ControlNode.hpp"
+#include "dtpcontrols/FlowMasterNode.hpp"
+#include "dtpcontrols/CentralRouterInterfaceNode.hpp"
+//#include "dtpcontrols/OutputSinkNode.hpp"
+//#include "dtpcontrols/WibulatorNode.hpp"
+//#include "dtpcontrols/LinkProcessorNode.hpp"
 
 // uHal Headers
 #include "uhal/DerivedNode.hpp"
@@ -36,23 +43,20 @@ namespace dunedaq {
       explicit DTPPodNode(const uhal::Node& node);
       virtual ~DTPPodNode();
 
-      /**
-       * @brief     Get the status string of the node. Optionally print it
-       */
-      virtual std::string get_status(bool print_out = false) const;
+      void reset();
 
-      /**
-       * @brief     Read subnodes.
-       */
-      std::map<std::string, uhal::ValWord<uint32_t>> read_sub_nodes(const uhal::Node& node, // NOLINT(build/unsigned)
-								    bool dispatch = true) const;
+    private:
 
-      /**
-       * @brief     Reset subnodes.
-       */
-      void reset_sub_nodes(const uhal::Node& node,
-			   uint32_t aValue = 0x0, // NOLINT(build/unsigned)
-			   bool dispatch = true) const;
+      //InfoNode m_info_node;
+      ControlNode m_ctrl_node;
+      FlowMasterNode m_flowmaster_node;
+      CentralRouterInterfaceNode m_crif_node;
+      //      OutputSinkNode m_outsink_node;
+
+      //      std::vector<WibulatorNode> m_wibtor_nodes;
+      //      std::vector<LinkProcessorNode> m_link_nodes;
+      
+
     };
 
   } // namespace dtpcontrols

@@ -14,66 +14,37 @@
 #include <string>
 
 namespace dunedaq {
-namespace dtpcontrols {
+  namespace dtpcontrols {
+    
+    UHAL_REGISTER_DERIVED_NODE(DTPPodNode)
+    
+    //-----------------------------------------------------------------------------
+    DTPPodNode::DTPPodNode(const uhal::Node& node) :uhal::Node(node),
+      m_ctrl_node(node.getNode<ControlNode>("ctrl")),
+      m_flowmaster_node(node.getNode<FlowMasterNode>("flowmaster")),
+      m_crif_node(node.getNode<CentralRouterInterfaceNode>("cr_if"))
+    {
 
-UHAL_REGISTER_DERIVED_NODE(DTPPodNode)
-
-//-----------------------------------------------------------------------------
-DTPPodNode::DTPPodNode(const uhal::Node& node)
-  : uhal::Node(node)
-{}
-//-----------------------------------------------------------------------------
-
-//-----------------------------------------------------------------------------
-DTPPodNode::~DTPPodNode() {}
-//-----------------------------------------------------------------------------
-
-//-----------------------------------------------------------------------------
-std::string
-DTPPodNode::get_status(bool print_out) const
-{
-  auto subnodes = read_sub_nodes(getNode("csr.stat"));
-  std::stringstream status;
-
-  for (auto& node : subnodes)
-    status << node.first << " " << node.second.value();
-
-  if (print_out)
-    TLOG() << status.str();
-  return status.str();
-}
-//-----------------------------------------------------------------------------
-
-//-----------------------------------------------------------------------------
-std::map<std::string, uhal::ValWord<uint32_t>> // NOLINT(build/unsigned)
-DTPPodNode::read_sub_nodes(const uhal::Node& node, bool dispatch) const
-{
-  auto node_names = node.getNodes();
-
-  std::map<std::string, uhal::ValWord<uint32_t>> node_name_value_pairs; // NOLINT(build/unsigned)
-
-  for (auto it = node_names.begin(); it != node_names.end(); ++it)
-    node_name_value_pairs[*it] = node.getNode(*it).read();
-  if (dispatch)
-    getClient().dispatch();
-  return node_name_value_pairs;
-}
-//-----------------------------------------------------------------------------
-
-//-----------------------------------------------------------------------------
-void
-DTPPodNode::reset_sub_nodes(const uhal::Node& node, uint32_t aValue, bool dispatch) const // NOLINT(build/unsigned)
-{
-
-  auto node_names = node.getNodes();
-
-  for (auto it = node_names.begin(); it != node_names.end(); ++it)
-    node.getNode(*it).write(aValue);
-
-  if (dispatch)
-    getClient().dispatch();
-}
-//-----------------------------------------------------------------------------
-
-} // namespace dtpcontrols
+    }
+    //-----------------------------------------------------------------------------
+    
+    //-----------------------------------------------------------------------------
+    DTPPodNode::~DTPPodNode() {}
+    //-----------------------------------------------------------------------------
+    
+    //-----------------------------------------------------------------------------
+    void DTPPodNode::reset() {
+      
+      m_ctrl_node.SoftReset(true);
+      m_ctrl_node.MasterReset(true);
+      
+      /*      for (auto it; it=m_links.start(); it!=m_links.end() ){
+	it->ResetInputWordCounter(true);
+	it->ResetOutputWordCounter(true);
+	it->ErrorReset(true);
+	}*/
+     
+    }
+    
+  } // namespace dtpcontrols
 } // namespace dunedaq
