@@ -1,6 +1,8 @@
 
 #include "dtpcontrols/toolbox.hpp"
 
+#include <sstream>
+#include <cstdlib>
 #include <string>
 #include <boost/filesystem.hpp>
 #include <boost/algorithm/string/predicate.hpp>
@@ -13,7 +15,8 @@ namespace dunedaq {
       std::string p("");
 
       std::string connfile("dtp_connections.xml");
-      std::istringstream paths(std::getenv("DUNEDAQ_SHARE_PATH"));
+      std::string search_path =std::getenv("DUNEDAQ_SHARE_PATH"); 
+      std::istringstream paths(search_path);
       
       std::string path;
       for (std::string path; std::getline(paths, path, ':'); ) {

@@ -36,8 +36,8 @@ const StreamProcessorArrayNode& get_stream_proc_array_node() const;
 
 
 
-}
-}
+} // namespace dtpcontrols
+} // namespace dunedaq
 
 
 #endif //DTPCONTROLS_INCLUDE_DTPCONTROLS_LINKPROCESSORNODE_HPP_

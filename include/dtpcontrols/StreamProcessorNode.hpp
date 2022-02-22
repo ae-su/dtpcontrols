@@ -37,7 +37,6 @@ public:
   void SetThreshold(const uint16_t, const bool);
   const uhal::ValWord<uint32_t> GetMaskChannel00To31(const bool);
   const uhal::ValWord<uint32_t> GetMaskChannel32To63(const bool);
-  const uhal::Node& GetMonProbeNode(const std::string&);
 
   const MonProbeNode& get_mon_probe_node(uint32_t i) const;
 
