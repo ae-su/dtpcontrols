@@ -30,7 +30,7 @@ public:
 
   void CapCounters(const bool);
   void StreamSelect(const uint32_t, const bool);
-  const uhal::Node& GetStreamProcessorNode(void);
+
 };
 
 } // namespace dtpcontrols

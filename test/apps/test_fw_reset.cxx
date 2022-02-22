@@ -11,12 +11,18 @@ using namespace dunedaq::dtpcontrols;
 int main(int argc, char const* argv[]) {
 
   uhal::setLogLevelTo(uhal::Debug());
-  uhal::ConnectionManager cm("file://" + std::string(argv[1])); //, {"ipbusflx-2.0"})
-  uhal::HwInterface flx = cm.getDevice("U-SIMUDP-JS");
+  if (argc != 3){
+    std::cout<< "Wrong number of arguments" << std::endl;
+    return 0;
+  }
+  uhal::ConnectionManager cm("file://" + std::string(argv[1]), {"ipbusflx-2.0"});
+  uhal::HwInterface flx = cm.getDevice("U-SIMUDP");
 
   auto lCtrlNode = flx.getNode<ControlNode>("ctrl");
   lCtrlNode.SoftReset(true);
+  std::cout << "Done soft reset" << std::endl;
   lCtrlNode.MasterReset(true);
+  std::cout << "Done master reset" << std::endl;
 
   auto lDRlinkproc0 = flx.getNode<DataReceptionNode>("linkproc0.drtr.dr");
   auto lDRlinkproc1 = flx.getNode<DataReceptionNode>("linkproc1.drtr.dr");
@@ -43,5 +49,7 @@ int main(int argc, char const* argv[]) {
   lDRlinkproc4.ResetInputWordCounter(true);
   lDRlinkproc4.ResetOutputWordCounter(true);
   lDRlinkproc4.ErrorReset(true);
+  std::cout << "Done link DR reset" << std::endl;
+  return 1;
 }
 

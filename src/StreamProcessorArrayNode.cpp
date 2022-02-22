@@ -27,9 +27,6 @@ void StreamProcessorArrayNode::StreamSelect(const uint32_t pipe, const bool disp
   if(dispatch) {getClient().dispatch();}  
 }
 
-const uhal::Node &StreamProcessorArrayNode::GetStreamProcessorNode(void) {
-  return getNode<StreamProcessorNode>("stream_proc");
-}
 
 } // namespace dtpcontrols
 } // namespace dunedaq

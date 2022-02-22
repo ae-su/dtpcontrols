@@ -1,4 +1,4 @@
-/**
+DIS/**
  * @file DataReceptionNode.cpp
  *
  * This is part of the DUNE DAQ Software Suite, copyright 2022.
@@ -6,17 +6,18 @@
  * received with this code.
  */
 
-#include "dtpcontrols/DataReceptionNode.hpp"
+//#include "logging/Logging.hpp"
 
-namespace dunedaq {
-namespace dtpcontrols {
+#include "dtpcontrols/DataReceptionNode.hpp"
 
 UHAL_REGISTER_DERIVED_NODE(DataReceptionNode)
 
-DataReceptionNode::DataReceptionNode(const uhal::Node& node) : uhal::Node(node) {}
-  
+//NodeNameBuilder* nnb;
+
+DataReceptionNode::DataReceptionNode(const uhal::Node& node) : DTPNode(node){}
+
 DataReceptionNode::~DataReceptionNode(){}
-  
+
 void DataReceptionNode::EnableDataReception(bool dispatch) {
   getNode("csr.ctrl.en").write(0x1);
   if(dispatch) {getClient().dispatch();}
@@ -85,6 +86,3 @@ uhal::ValWord<uint32_t> DataReceptionNode::SentPacketCount(bool dispatch) {
   if(dispatch) {getClient().dispatch();}  
   return lSPC;
 }
-
-} // namespace dtpcontrols
-} // namespace dunedaq

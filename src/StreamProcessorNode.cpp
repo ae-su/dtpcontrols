@@ -30,7 +30,7 @@ void StreamProcessorNode::CapCounters(const bool dispatch) {
   if(dispatch) {getClient().dispatch();}  
 }
 
-void StreamProcessorNode::SetThreshold(const uint16_t threshold, const bool dispatch) {
+void StreamProcessorNode::SetThreshold(const uint32_t threshold, const bool dispatch) {
 
   if (threshold > 0 && threshold < 0x7fff){ // from hfButler; set in firmware JS thinks
     getNode("csr.hitfinder.threshold").write(threshold);
@@ -88,16 +88,7 @@ const uhal::ValWord<uint32_t> StreamProcessorNode::GetMaskChannel32To63(const bo
   return m32To63;
 }
 
-<<<<<<< HEAD
-=======
-const uhal::Node &
-StreamProcessorNode::GetMonProbeNode(const std::string &mon_probe_name) {
-  std::vector<std::string> monprobes {"po", "p1", "p2", "p3", "p4", "p5"};
-  if( std::find(monprobes.begin(), monprobes.end(), mon_probe_name) != monprobes.end())
-    return getNode<MonProbeNode>(mon_probe_name);
-  else {return getNode("");} // add ERS message and return empty node to propagate failure upward.
-}
 
 } // namespace dtpcontrols
 } // namespace dunedaq
->>>>>>> 928243730bf340623a47b65f426a8e74ba90d05e
+

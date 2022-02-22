@@ -1,4 +1,4 @@
-
+#include "uhal/uhal.hpp"
 #include "uhal/log/log.hpp"
 #include "dtpcontrols/DTPNode.hpp"
 #include "dtpcontrols/CentralRouterInterfaceNode.hpp"
@@ -7,12 +7,12 @@
 #include "dtpcontrols/StreamProcessorNode.hpp"
 #include "dtpcontrols/StreamProcessorArrayNode.hpp"
 #include "dtpcontrols/DPRNode.hpp"
-//#include "DummyComponent.hpp"
+
 #include "dtpcontrols/ControlNode.hpp"
 #include <iostream>
 
 using namespace uhal;
-
+using namespace dunedaq::dtpcontrols;
 int main(int argc, char const* argv[]) {
 
   uhal::setLogLevelTo(uhal::Debug());

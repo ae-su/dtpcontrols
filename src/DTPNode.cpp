@@ -7,14 +7,18 @@
  */
 
 #include "dtpcontrols/DTPNode.hpp"
+
+#include <cstdint>
 #include <uhal/HwInterface.hpp>
+#include <uhal/ValMem.hpp>
 
-DTPNode::DTPNode(const uhal::Node &node) : uhal::Node(node) {};
-DTPNode::~DTPNode(){};
 
-std::map<std::string, uhal::ValWord<uint32_t>>
-    DTPNode::GetFirmwareConfigInfo(uhal::HwInterface& Iface) {
 
+DTPNode::DTPNode(const uhal::Node& node) : uhal::Node(node) {};
+
+DTPNode::~DTPNode() {};
+
+std::map<std::string, uhal::ValWord<uint32_t>> DTPNode::GetFirmwareConfigInfo(uhal::HwInterface& Iface) {
   std::vector<std::string> infoNodes{Iface.getNodes("info.id.config")};
   std::map<std::string, uhal::ValWord<uint32_t>> config_vals;
   for (const auto& node : infoNodes) {
@@ -23,3 +27,6 @@ std::map<std::string, uhal::ValWord<uint32_t>>
   getClient().dispatch();
   return config_vals;
   };
+
+
+
