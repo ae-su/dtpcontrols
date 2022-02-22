@@ -38,9 +38,11 @@ namespace dunedaq {
       UHAL_DERIVEDNODE(DTPPodNode)
 
       public:
-      explicit DTPPodNode(const uhal::Node& node);
+
+      explicit DTPPodNode(const uhal::Node& node, uint n_links=5);
       virtual ~DTPPodNode();
 
+      // get nodes
       const InfoNode& get_info_node() const;
       const ControlNode& get_control_node() const;
       const FlowMasterNode& get_flowmaster_node() const;
@@ -49,10 +51,19 @@ namespace dunedaq {
       const CentralRouterInterfaceNode& get_crif_node() const;
       const OutputSinkNode& get_output_sink_node() const;
 
+      // reset everything
       void reset();
 
-    private:
+      // configure TP generation
+      // this is a placeholder - a configuration set will be needed as argument
+      void configure();
 
+      // enable TP generation
+      void enable();
+
+    private:
+      
+      // how many links does this build contain
       uint32_t m_n_links;
 
     };
