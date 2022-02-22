@@ -47,7 +47,7 @@ namespace dunedaq {
       const WibulatorNode& get_wibulator_node(uint i) const;
       const LinkProcessorNode& get_link_processor_node(uint i) const;
       const CentralRouterInterfaceNode& get_crif_node() const;
-      //      const OutputSinkNode& get_output_sink_node() const;
+      const OutputSinkNode& get_output_sink_node() const;
 
       void reset();
 

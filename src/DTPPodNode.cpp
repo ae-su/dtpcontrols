@@ -26,6 +26,10 @@ namespace dunedaq {
 
     DTPPodNode::~DTPPodNode() {}
 
+    const InfoNode& DTPPodNode::get_info_node() const {
+      return getNode<InfoNode>("info");
+    }
+
     const ControlNode& DTPPodNode::get_control_node() const {
       return getNode<ControlNode>("ctrl");
     }
@@ -45,8 +49,23 @@ namespace dunedaq {
       }
     }
 
+    const WibulatorNode& DTPPodNode::get_wibulator_node(uint32_t i) const {
+      if (i < m_n_links) {
+	std::string name("wibtor");
+	name += std::to_string(i);
+	return getNode<WibulatorNode>(name);
+      }
+      else {
+	//throw
+      }
+    }
+
     const CentralRouterInterfaceNode& DTPPodNode::get_crif_node() const {
       return getNode<CentralRouterInterfaceNode>("cr_if");
+    }
+
+    const OutputSinkNode& DTPPodNode::get_output_sink_node() const {
+      return getNode<OutputSinkNode>("outsink");
     }
     
 
