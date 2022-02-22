@@ -23,6 +23,7 @@ PYBIND11_MODULE(_daq_dtpcontrols_py, top_module) {
      py::class_<dtpcontrols::ExampleNode, uhal::Node>(top_module, "ExampleNode")
     .def(py::init<const uhal::Node&>())
     .def("get_status", &dtpcontrols::ExampleNode::get_status);
+     
 }
 
 } // namespace python
