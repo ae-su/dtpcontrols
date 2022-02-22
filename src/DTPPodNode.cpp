@@ -18,32 +18,51 @@ namespace dunedaq {
     
     UHAL_REGISTER_DERIVED_NODE(DTPPodNode)
     
-    //-----------------------------------------------------------------------------
-    DTPPodNode::DTPPodNode(const uhal::Node& node) :uhal::Node(node),
-      m_ctrl_node(node.getNode<ControlNode>("ctrl")),
-      m_flowmaster_node(node.getNode<FlowMasterNode>("flowmaster")),
-      m_crif_node(node.getNode<CentralRouterInterfaceNode>("cr_if"))
-    {
 
+    DTPPodNode::DTPPodNode(const uhal::Node& node) :uhal::Node(node),
+      m_n_links(5)
+    {
     }
-    //-----------------------------------------------------------------------------
-    
-    //-----------------------------------------------------------------------------
+
     DTPPodNode::~DTPPodNode() {}
-    //-----------------------------------------------------------------------------
+
+    const ControlNode& DTPPodNode::get_control_node() const {
+      return getNode<ControlNode>("ctrl");
+    }
+
+    const FlowMasterNode& DTPPodNode::get_flowmaster_node() const {
+      return getNode<FlowMasterNode>("flowmaster");
+    }
     
-    //-----------------------------------------------------------------------------
+    const LinkProcessorNode& DTPPodNode::get_link_processor_node(uint32_t i) const {
+      if (i < m_n_links) {
+	std::string name("linkproc");
+	name += std::to_string(i);
+	return getNode<LinkProcessorNode>(name);
+      }
+      else {
+	//throw
+      }
+    }
+
+    const CentralRouterInterfaceNode& DTPPodNode::get_crif_node() const {
+      return getNode<CentralRouterInterfaceNode>("cr_if");
+    }
+    
+
     void DTPPodNode::reset() {
+    
+      auto lCtrlNode = get_control_node();
+      lCtrlNode.SoftReset(true);
+      lCtrlNode.MasterReset(true);
       
-      m_ctrl_node.SoftReset(true);
-      m_ctrl_node.MasterReset(true);
-      
-      /*      for (auto it; it=m_links.start(); it!=m_links.end() ){
-	it->ResetInputWordCounter(true);
-	it->ResetOutputWordCounter(true);
-	it->ErrorReset(true);
-	}*/
-     
+      for (uint i=0; i!=m_n_links; ++i) {	
+	auto lDataReceptionNode = get_link_processor_node(i).get_data_router_node().get_data_reception_node();
+	lDataReceptionNode.ResetInputWordCounter(true);
+	lDataReceptionNode.ResetOutputWordCounter(true);
+	lDataReceptionNode.ErrorReset(true);
+      }
+
     }
     
   } // namespace dtpcontrols

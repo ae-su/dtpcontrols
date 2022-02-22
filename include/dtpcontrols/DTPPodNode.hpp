@@ -12,13 +12,13 @@
 #define DTPCONTROLS_INCLUDE_DTPCONTROLS_DTPPODNODE_HPP_
 
 // dtpcontrols Headers
-//#include "dtpcontrols/InfoNode.hpp"
+#include "dtpcontrols/InfoNode.hpp"
 #include "dtpcontrols/ControlNode.hpp"
 #include "dtpcontrols/FlowMasterNode.hpp"
 #include "dtpcontrols/CentralRouterInterfaceNode.hpp"
-//#include "dtpcontrols/OutputSinkNode.hpp"
-//#include "dtpcontrols/WibulatorNode.hpp"
-//#include "dtpcontrols/LinkProcessorNode.hpp"
+#include "dtpcontrols/OutputSinkNode.hpp"
+#include "dtpcontrols/WibulatorNode.hpp"
+#include "dtpcontrols/LinkProcessorNode.hpp"
 
 // uHal Headers
 #include "uhal/DerivedNode.hpp"
@@ -31,9 +31,7 @@
 
 namespace dunedaq {
   namespace dtpcontrols {
-    /**
-     * @brief      Example of uhal::Node derived class.
-     */
+
     class DTPPodNode : public uhal::Node
     {
 
@@ -43,19 +41,19 @@ namespace dunedaq {
       explicit DTPPodNode(const uhal::Node& node);
       virtual ~DTPPodNode();
 
+      const InfoNode& get_info_node() const;
+      const ControlNode& get_control_node() const;
+      const FlowMasterNode& get_flowmaster_node() const;
+      const WibulatorNode& get_wibulator_node(uint i) const;
+      const LinkProcessorNode& get_link_processor_node(uint i) const;
+      const CentralRouterInterfaceNode& get_crif_node() const;
+      //      const OutputSinkNode& get_output_sink_node() const;
+
       void reset();
 
     private:
 
-      //InfoNode m_info_node;
-      ControlNode m_ctrl_node;
-      FlowMasterNode m_flowmaster_node;
-      CentralRouterInterfaceNode m_crif_node;
-      //      OutputSinkNode m_outsink_node;
-
-      //      std::vector<WibulatorNode> m_wibtor_nodes;
-      //      std::vector<LinkProcessorNode> m_link_nodes;
-      
+      uint32_t m_n_links;
 
     };
 

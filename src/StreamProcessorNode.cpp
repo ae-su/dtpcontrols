@@ -16,7 +16,10 @@ namespace dtpcontrols {
 
 UHAL_REGISTER_DERIVED_NODE(StreamProcessorNode)
 
-StreamProcessorNode::StreamProcessorNode(const uhal::Node& node) : uhal::Node(node) {}
+StreamProcessorNode::StreamProcessorNode(const uhal::Node& node) : uhal::Node(node),
+  m_n_mon_probes(6)
+{
+}
 
 StreamProcessorNode::~StreamProcessorNode(){}
 
@@ -95,6 +98,19 @@ StreamProcessorNode::GetMonProbeNode(const std::string &mon_probe_name) {
     return getNode<MonProbeNode>(mon_probe_name);
   else {return getNode("");} // add ERS message and return empty node to propagate failure upward.
 }
+  
+  const MonProbeNode& 
+  StreamProcessorNode::get_mon_probe_node(uint32_t i) const {
+    if (i<m_n_mon_probes) {
+      std::string name("p");
+      name += std::to_string(i);
+      return getNode<MonProbeNode>(name);
+    }
+    else {
+      // throw
+    }
+
+  }
 
 } // namespace dtpcontrols
 } // namespace dunedaq

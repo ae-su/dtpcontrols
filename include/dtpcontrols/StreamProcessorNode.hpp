@@ -13,7 +13,10 @@
 #ifndef DTPCONTROLS_INCLUDE_DTPCONTROLS_STREAMPROCESSORNODE_HPP_
 #define DTPCONTROLS_INCLUDE_DTPCONTROLS_STREAMPROCESSORNODE_HPP_
 
+#include "dtpcontrols/MonProbeNode.hpp"
+
 #include "uhal/DerivedNode.hpp"
+
 
 namespace dunedaq {
 namespace dtpcontrols {
@@ -35,6 +38,11 @@ public:
   const uhal::ValWord<uint32_t> GetMaskChannel00To31(const bool);
   const uhal::ValWord<uint32_t> GetMaskChannel32To63(const bool);
   const uhal::Node& GetMonProbeNode(const std::string&);
+
+  const MonProbeNode& get_mon_probe_node(uint32_t i) const;
+
+private:
+  uint32_t m_n_mon_probes;
 
 };
 

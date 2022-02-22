@@ -27,7 +27,7 @@ void StreamProcessorArrayNode::StreamSelect(const uint32_t pipe, const bool disp
   if(dispatch) {getClient().dispatch();}  
 }
 
-const uhal::Node &StreamProcessorArrayNode::GetStreamProcessorNode(void) {
+const StreamProcessorNode& StreamProcessorArrayNode::get_stream_proc_node(void) const {
   return getNode<StreamProcessorNode>("stream_proc");
 }
 
