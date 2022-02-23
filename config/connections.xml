@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<connections>
+
+  <connection id="U-SIMUDP" uri="ipbusudp-2.0://localhost:50001" address_table="file://addrtab/ultimate/dtpc_pod.xml" />
+
+</connections>
+    
