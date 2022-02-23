@@ -3,6 +3,7 @@
 
 #include "uhal/uhal.hpp"
 
+#include <cstdlib>
 #include <iostream>
 
 using namespace uhal;
@@ -13,7 +14,7 @@ int main(int argc, char const* argv[]) {
   uhal::setLogLevelTo(uhal::Debug());
   if (argc != 3){
     std::cout<< "Wrong number of arguments" << std::endl;
-    return 0;
+    exit(EXIT_FAILURE);
   }
   uhal::ConnectionManager cm("file://" + std::string(argv[1]), {"ipbusflx-2.0"});
   uhal::HwInterface flx = cm.getDevice("U-SIMUDP");
@@ -50,6 +51,6 @@ int main(int argc, char const* argv[]) {
   lDRlinkproc4.ResetOutputWordCounter(true);
   lDRlinkproc4.ErrorReset(true);
   std::cout << "Done link DR reset" << std::endl;
-  return 1;
+  return 0;
 }
 
