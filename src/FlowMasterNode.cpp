@@ -22,7 +22,7 @@ FlowMasterNode::~FlowMasterNode() {}
 void FlowMasterNode::SourceSelect(const std::string& source, const bool dispatch) {
   std::map<std::string, uint32_t> src_map{{"gbt", 0}, {"wibtor", 1}};
   if (Exists(source, src_map)) {
-    getNode("csr.ctrl.en").write(src_map[source]);
+    getNode("csr.ctrl.gbt_src").write(src_map[source]);
     if(dispatch) {getClient().dispatch();}
   }
   else std::cout<<"Unknown source. Please check."<<std::endl;
@@ -31,7 +31,7 @@ void FlowMasterNode::SourceSelect(const std::string& source, const bool dispatch
 void FlowMasterNode::SourceSelect(const uint32_t &source, const bool dispatch) {
   const std::vector<uint32_t> src_num{0, 1};
   if (Exists(source, src_num)) {
-    getNode("csr.ctrl.en").write(src_num[source]);
+    getNode("csr.ctrl.src").write(src_num[source]);
     if(dispatch) {getClient().dispatch();}
   }
   else std::cout<<"Unknown source. Please check."<<std::endl;
@@ -51,7 +51,7 @@ void FlowMasterNode::SinkSelect(const std::string& sink, bool dispatch) {
   else std::cout<<"Unknown sink source. Please check."<<std::endl;
   
   if (Exists(sink, sink_link)) {
-    getNode("csr.ctrl.").write(sink_link[sink]);
+    getNode("csr.ctrl.sink_link").write(sink_link[sink]);
     if(dispatch) {getClient().dispatch();}
   }
   else std::cout<<"Unknown sink link. Please check."<<std::endl;
@@ -67,7 +67,7 @@ void FlowMasterNode::SinkSelect(const uint32_t& sink, bool dispatch) {
   else std::cout<<"Unknown sink source. Please check."<<std::endl;
   
   if (Exists(sink, sink_link)) {
-    getNode("csr.ctrl.").write(sink_link[sink]);
+    getNode("csr.ctrl.sink_link").write(sink_link[sink]);
     if(dispatch) {getClient().dispatch();}
   }
   else std::cout<<"Unknown sink link. Please check."<<std::endl;
