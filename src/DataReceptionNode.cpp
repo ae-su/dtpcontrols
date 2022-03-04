@@ -40,7 +40,7 @@ void DataReceptionNode::error_reset(bool dispatch) {
   if(dispatch) {getClient().dispatch();}  
 }
 
-uhal::ValWord<uint32_t> DataReceptionNode::dual_port_ram_writer_flag(bool dispatch) {
+uhal::ValWord<uint32_t> DataReceptionNode::dual_port_ram_write_flag(bool dispatch) {
   uhal::ValWord<uint32_t> lDPRWF;  
   lDPRWF = getNode("stat.dpr_wen").read();
   if(dispatch) {getClient().dispatch();}  
