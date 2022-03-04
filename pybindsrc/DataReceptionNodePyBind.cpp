@@ -22,9 +22,9 @@ void register_data_reception_node(py::module& m){
 
      py::class_<dtpcontrols::DataReceptionNode, uhal::Node>(m, "DataReceptionNode")
        .def(py::init<const uhal::Node&>())
-       .def("EnableDataReception", &dtpcontrols::DataReceptionNode::EnableDataReception)
-       .def("EnableDataReception", &dtpcontrols::DataReceptionNode::ResetInputWordCounter)
-       .def("EnableDataReception", &dtpcontrols::DataReceptionNode::ResetOutputWordCounter);
+       .def("enable_data_reception", &dtpcontrols::DataReceptionNode::enable_data_reception)
+       .def("enable_data_reception", &dtpcontrols::DataReceptionNode::reset_input_word_counter)
+       .def("enable_data_reception", &dtpcontrols::DataReceptionNode::reset_output_word_counter);
 }
 
 } // namespace python

@@ -20,14 +20,5 @@ RouterNode::RouterNode(const uhal::Node& node) : uhal::Node(node) {}
 
 RouterNode::~RouterNode() {}
 
-const uhal::Node &RouterNode::GetDataReceptionNode(void) {
-  return getNode<DataReceptionNode>("dr");
-}
-
-const uhal::Node &RouterNode::GetDPRNode(void) {
-  return getNode<DPRNode>("dpr");
-
-}
-
 } // namespace dtpcontrols
 } // namespace dunedaq

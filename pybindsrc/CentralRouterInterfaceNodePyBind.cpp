@@ -22,9 +22,9 @@ void register_central_router_interface_node(py::module& m){
 
      py::class_<dtpcontrols::CentralRouterInterfaceNode, uhal::Node>(m, "CentralRouterInterfaceNode")
        .def(py::init<const uhal::Node&>())
-       .def("EnableRouterInterface", &dtpcontrols::CentralRouterInterfaceNode::EnableRouterInterface,
+       .def("enable_central_router_interface", &dtpcontrols::CentralRouterInterfaceNode::enable_central_router_interface,
 	    py::arg("dispatch") = true)
-       .def("DropEmpty", &dtpcontrols::CentralRouterInterfaceNode::DropEmpty, py::arg("dispatch") = true);
+       .def("drop_empty", &dtpcontrols::CentralRouterInterfaceNode::drop_empty, py::arg("dispatch") = true);
 }
 
 } // namespace python

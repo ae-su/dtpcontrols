@@ -24,9 +24,9 @@ void register_flowmaster_node(py::module& m){
 
      py::class_<dtpcontrols::FlowMasterNode, uhal::Node>(m, "FlowMasterNode")
        .def(py::init<const uhal::Node&>())
-       .def("SourceSelect", py::overload_cast<const std::string&, const bool>(&FlowMasterNode::SourceSelect),
+       .def("source_select", py::overload_cast<const std::string&, const bool>(&FlowMasterNode::source_select),
 	   py::arg("source"), py::arg("dispatch") = true)
-       .def("SinkSelect", py::overload_cast<const std::string&, const bool>(&FlowMasterNode::SinkSelect),
+       .def("sink_select", py::overload_cast<const std::string&, const bool>(&FlowMasterNode::sink_select),
 	    py::arg("sink"), py::arg("dispatch")=true);
 }
 

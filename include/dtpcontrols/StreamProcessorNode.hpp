@@ -29,14 +29,14 @@ public:
   explicit StreamProcessorNode(const uhal::Node& );
   virtual ~StreamProcessorNode();
 
-  void DropEmpty(const bool);
-  void SetMaskChannels(const uint64_t, const bool, const bool);
-  void SetMaskChannel00To31(const uint32_t, const bool, const bool);
-  void SetMaskChannel32To63(const uint32_t, const bool,const bool);
-  void CapCounters(const bool);
-  void SetThreshold(const uint32_t, const bool);
-  const uhal::ValWord<uint32_t> GetMaskChannel00To31(const bool);
-  const uhal::ValWord<uint32_t> GetMaskChannel32To63(const bool);
+  void drop_empty(const bool);
+  void set_mask_channels(const uint64_t, const bool, const bool);
+  void set_mask_channel_00to31(const uint32_t, const bool, const bool);
+  void set_mask_channel_32to63(const uint32_t, const bool,const bool);
+  void cap_counters(const bool);
+  void set_threshold(const uint32_t, const bool);
+  const uhal::ValWord<uint32_t> get_mask_channel_00to31(const bool);
+  const uhal::ValWord<uint32_t> get_mask_channel_32to63(const bool);
 
 };
 

@@ -22,8 +22,8 @@ void register_stream_processor_array_node(py::module& m){
 
     py::class_<dtpcontrols::StreamProcessorArrayNode, uhal::Node>(m, "StreamProcessorArrayNode")
        .def(py::init<const uhal::Node &>())
-       .def("StreamSelect",
-	    &dtpcontrols::StreamProcessorArrayNode::StreamSelect,
+       .def("stream_select",
+	    &dtpcontrols::StreamProcessorArrayNode::stream_select,
 	    py::arg("pipe"), py::arg("dispatch")=true);
 
 }

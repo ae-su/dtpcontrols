@@ -20,9 +20,9 @@ int main(int argc, char const* argv[]) {
   uhal::HwInterface flx = cm.getDevice("U-SIMUDP");
 
   auto lCtrlNode = flx.getNode<ControlNode>("ctrl");
-  lCtrlNode.SoftReset(true);
+  lCtrlNode.soft_reset(true);
   std::cout << "Done soft reset" << std::endl;
-  lCtrlNode.MasterReset(true);
+  lCtrlNode.master_reset(true);
   std::cout << "Done master reset" << std::endl;
 
   auto lDRlinkproc0 = flx.getNode<DataReceptionNode>("linkproc0.drtr.dr");
@@ -31,27 +31,27 @@ int main(int argc, char const* argv[]) {
   auto lDRlinkproc3 = flx.getNode<DataReceptionNode>("linkproc3.drtr.dr");
   auto lDRlinkproc4 = flx.getNode<DataReceptionNode>("linkproc4.drtr.dr");
   
-  lDRlinkproc0.ResetInputWordCounter(true);
-  lDRlinkproc0.ResetOutputWordCounter(true);
-  lDRlinkproc0.ErrorReset(true);
+  lDRlinkproc0.reset_input_word_counter(true);
+  lDRlinkproc0.reset_output_word_counter(true);
+  lDRlinkproc0.error_reset(true);
 
   std::cout << "linkproc0 DR reset." << std::endl;
   
-  lDRlinkproc1.ResetInputWordCounter(true);
-  lDRlinkproc1.ResetOutputWordCounter(true);
-  lDRlinkproc1.ErrorReset(true);
+  lDRlinkproc1.reset_input_word_counter(true);
+  lDRlinkproc1.reset_output_word_counter(true);
+  lDRlinkproc1.error_reset(true);
   
-  lDRlinkproc2.ResetInputWordCounter(true);
-  lDRlinkproc2.ResetOutputWordCounter(true);
-  lDRlinkproc2.ErrorReset(true);
+  lDRlinkproc2.reset_input_word_counter(true);
+  lDRlinkproc2.reset_output_word_counter(true);
+  lDRlinkproc2.error_reset(true);
   
-  lDRlinkproc3.ResetInputWordCounter(true);
-  lDRlinkproc3.ResetOutputWordCounter(true);
-  lDRlinkproc3.ErrorReset(true);
+  lDRlinkproc3.reset_input_word_counter(true);
+  lDRlinkproc3.reset_output_word_counter(true);
+  lDRlinkproc3.error_reset(true);
 
-  lDRlinkproc4.ResetInputWordCounter(true);
-  lDRlinkproc4.ResetOutputWordCounter(true);
-  lDRlinkproc4.ErrorReset(true);
+  lDRlinkproc4.reset_input_word_counter(true);
+  lDRlinkproc4.reset_output_word_counter(true);
+  lDRlinkproc4.error_reset(true);
   
   std::cout << "Done link DR reset" << std::endl;
   return 0;

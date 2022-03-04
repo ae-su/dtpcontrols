@@ -27,9 +27,6 @@ public:
   explicit RouterNode(const uhal::Node& );
   virtual ~RouterNode();
 
-  const uhal::Node & GetDataReceptionNode(void);
-  const uhal::Node & GetDPRNode(void);
-
 };
 
 } // namespace dtpcontrols

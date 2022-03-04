@@ -43,22 +43,22 @@ int main(int argc, char const* argv[]) {
   //hfButler.py flx-0-p2-hf init ### reset and initialise ####
   
   auto lCtrlNode = flx.getNode<ControlNode>("ctrl");
-  lCtrlNode.SoftReset(true);
-  lCtrlNode.MasterReset(true);
+  lCtrlNode.soft_reset(true);
+  lCtrlNode.master_reset(true);
   std::cout << "INIT SEQUENCE DONE hfButler.py flx-0-p2-hf init" <<std::endl;
   
   //hfButler.py flx-0-p2-hf cr-if --on --drop-empty ### enables cr-if and empty packet suppresion ###
 
   auto lCRIFNode = flx.getNode<CentralRouterInterfaceNode>("cr_if");
-  lCRIFNode.EnableRouterInterface(true);
-  lCRIFNode.DropEmpty(true);
+  lCRIFNode.enable_central_router_interface(true);
+  lCRIFNode.drop_empty(true);
   std::cout << "DONE hfButler.py flx-0-p2-hf cr-if --on --drop-empty" <<std::endl;
   
   //hfButler.py flx-0-p2-hf flowmaster --src-sel gbt --sink-sel hits ### sets data router input to GBT source and sink to hitfinder output ###
 
   auto lFlowMasterNode = flx.getNode<FlowMasterNode>("flowmaster");
-  lFlowMasterNode.SourceSelect("gbt", true);
-  lFlowMasterNode.SinkSelect("hits", true);
+  lFlowMasterNode.source_select("gbt", true);
+  lFlowMasterNode.sink_select("hits", true);
   std::cout << "DONE hfButler.py flx-0-p2-hf flowmaster --src-sel gbt --sink-sel hits" <<std::endl;  
 
   //hfButler.py flx-0-p2-hf link hitfinder -t 20 ### hitfinder threshold to 20 ###
@@ -71,8 +71,8 @@ int main(int argc, char const* argv[]) {
     auto streamProcArrayNode = flx.getNode<StreamProcessorArrayNode>(lnk+"stream_procs");
     auto streamProcNode = flx.getNode<StreamProcessorNode>(lnk+"stream_procs.stream_proc");
     for (uint32_t i=0; i<=lFirmwareInfo["n_port"]; i++){
-      streamProcNode.SetThreshold(threshold, true);
-      streamProcArrayNode.StreamSelect(i, true);
+      streamProcNode.set_threshold(threshold, true);
+      streamProcArrayNode.stream_select(i, true);
     }
     flx.getClient().dispatch();
   }
@@ -91,9 +91,9 @@ int main(int argc, char const* argv[]) {
       mask_word |= (1<<j);
     }
     for (uint32_t i=0; i<lFirmwareInfo["n_port"]; i++){
-      streamProcArrayNode.StreamSelect(i, true);
-      streamProcNode.SetMaskChannel00To31(mask_word, true, MASK_ENABLE);
-      streamProcNode.SetMaskChannel32To63(mask_word>>32, true, MASK_ENABLE);
+      streamProcArrayNode.stream_select(i, true);
+      streamProcNode.set_mask_channel_00to31(mask_word, true, MASK_ENABLE);
+      streamProcNode.set_mask_channel_32to63(mask_word>>32, true, MASK_ENABLE);
       std::cout << i <<std::endl;      
     }
     flx.getClient().dispatch();
@@ -106,16 +106,16 @@ int main(int argc, char const* argv[]) {
   uint32_t mux_out{1};
   for (auto& lnk : links) {
     auto dprNode = flx.getNode<DPRNode>(lnk+"drtr.dpr");
-    dprNode.SetMuxIn(mux_in, true);
-    dprNode.SetMuxOut(mux_out, true);
+    dprNode.set_mux_in(mux_in, true);
+    dprNode.set_mux_out(mux_out, true);
     auto drNode = flx.getNode<DataReceptionNode>(lnk+"drtr.dr");
-    drNode.EnableDataReception(true);
+    drNode.enable_data_reception(true);
     auto streamProcArrayNode = flx.getNode<StreamProcessorArrayNode>(lnk+"stream_procs");
     auto streamProcNode = flx.getNode<StreamProcessorNode>(lnk+"stream_procs.stream_proc");
     std::cout << lFirmwareInfo["n_port"] << std::endl;
     for (uint32_t i=0; i<lFirmwareInfo["n_port"]; i++){
-      streamProcArrayNode.StreamSelect(i, true);
-      streamProcNode.DropEmpty(true);
+      streamProcArrayNode.stream_select(i, true);
+      streamProcNode.drop_empty(true);
       std::cout << i << std::endl;
     }
     flx.getClient().dispatch();

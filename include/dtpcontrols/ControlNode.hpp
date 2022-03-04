@@ -10,8 +10,8 @@
  * received with this code.
  */
 
-#ifndef DTPCONTROLS_INCLUDE_DTPCONTROLS_CONTROLNODENODE_HPP_
-#define DTPCONTROLS_INCLUDE_DTPCONTROLS_CONTROLNODENODE_HPP_
+#ifndef DTPCONTROLS_INCLUDE_DTPCONTROLS_CONTROLNODE_HPP_
+#define DTPCONTROLS_INCLUDE_DTPCONTROLS_CONTROLNODE_HPP_
 
 #include "uhal/DerivedNode.hpp"
 
@@ -26,9 +26,9 @@ public:
   explicit ControlNode(const uhal::Node& );
   virtual ~ControlNode();
 
-  void Nuke(bool);
-  void SoftReset(bool);
-  void MasterReset(bool);
+  void nuke(bool);
+  void soft_reset(bool);
+  void master_reset(bool);
 };
 
 } // namespace dtpcontrols

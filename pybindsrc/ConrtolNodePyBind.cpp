@@ -22,9 +22,9 @@ void register_control_node(py::module& m){
 
      py::class_<dtpcontrols::ControlNode, uhal::Node>(m, "ControlNode")
        .def(py::init<const uhal::Node&>())
-       .def("SoftReset", &dtpcontrols::ControlNode::SoftReset, py::arg("dispatch") = true)
-       .def("MasterReset", &dtpcontrols::ControlNode::MasterReset, py::arg("dispatch") = true)
-       .def("Nuke", &dtpcontrols::ControlNode::Nuke, py::arg("dispatch") = true);
+       .def("soft_reset", &dtpcontrols::ControlNode::soft_reset, py::arg("dispatch") = true)
+       .def("master_reset", &dtpcontrols::ControlNode::master_reset, py::arg("dispatch") = true)
+       .def("nuke", &dtpcontrols::ControlNode::nuke, py::arg("dispatch") = true);
 }
 
 } // namespace python
