@@ -13,20 +13,20 @@
 namespace py = pybind11;
 
 namespace dunedaq {
-namespace dtpcontrols {
-namespace python {
+  namespace dtpcontrols {
+    namespace python {
 
-void register_data_reception_node(py::module& m){ 
+      void register_data_reception_node(py::module& m){ 
 
-    m.doc() = "c++ implementation of dtpcontrols DataReception python modules"; // optional module docstring
+	m.doc() = "c++ implementation of dtpcontrols DataReception python modules"; // optional module docstring
 
-     py::class_<dtpcontrols::DataReceptionNode, uhal::Node>(m, "DataReceptionNode")
-       .def(py::init<const uhal::Node&>())
-       .def("enable_data_reception", &dtpcontrols::DataReceptionNode::enable_data_reception)
-       .def("enable_data_reception", &dtpcontrols::DataReceptionNode::reset_input_word_counter)
-       .def("enable_data_reception", &dtpcontrols::DataReceptionNode::reset_output_word_counter);
-}
+	py::class_<dtpcontrols::DataReceptionNode, uhal::Node>(m, "DataReceptionNode")
+	  .def(py::init<const uhal::Node&>())
+	  .def("enable_data_reception", &dtpcontrols::DataReceptionNode::enable_data_reception)
+	  .def("reset_input_word_counter", &dtpcontrols::DataReceptionNode::reset_input_word_counter)
+	  .def("reset_output_word_counter", &dtpcontrols::DataReceptionNode::reset_output_word_counter);
+      }
 
-} // namespace python
-} // namespace timing
+    } // namespace python
+  } // namespace timing
 } // namespace dunedaq
