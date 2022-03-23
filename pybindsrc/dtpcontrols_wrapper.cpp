@@ -21,7 +21,10 @@ namespace dunedaq {
       extern void register_flowmaster_node(py::module& m);
       extern void register_stream_processor_array_node(py::module& m);
       extern void register_stream_processor_node(py::module& m);
-	
+      extern void register_dtppod_node(py::module& m);
+      extern void register_wibulator_node(py::module& m);
+      extern void register_toolbox(py::module& m);
+      
       PYBIND11_MODULE(_daq_dtpcontrols_py, top_module) {
 
 	top_module.doc() = "c++ implementation of dtpcontrols python modules"; // optional module docstring
@@ -34,7 +37,9 @@ namespace dunedaq {
 	dtpcontrols::python::register_flowmaster_node(core_module);
 	dtpcontrols::python::register_stream_processor_array_node(core_module);
 	dtpcontrols::python::register_stream_processor_node(core_module);
-     
+	dtpcontrols::python::register_dtppod_node(core_module);
+	dtpcontrols::python::register_wibulator_node(core_module);
+	dtpcontrols::python::register_toolbox(core_module);
       }
 
     } // namespace python
