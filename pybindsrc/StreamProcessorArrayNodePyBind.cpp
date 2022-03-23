@@ -13,21 +13,21 @@
 namespace py = pybind11;
 
 namespace dunedaq {
-namespace dtpcontrols {
-namespace python {
+  namespace dtpcontrols {
+    namespace python {
 
-void register_stream_processor_array_node(py::module& m){ 
+      void register_stream_processor_array_node(py::module& m){ 
 
-    m.doc() = "c++ implementation of dtpcontrols StreamProcessorArray python modules"; // optional module docstring
+	m.doc() = "c++ implementation of dtpcontrols StreamProcessorArray python modules"; // optional module docstring
 
-    py::class_<dtpcontrols::StreamProcessorArrayNode, uhal::Node>(m, "StreamProcessorArrayNode")
-       .def(py::init<const uhal::Node &>())
-       .def("stream_select",
-	    &dtpcontrols::StreamProcessorArrayNode::stream_select,
-	    py::arg("pipe"), py::arg("dispatch")=true);
+	py::class_<dtpcontrols::StreamProcessorArrayNode, uhal::Node>(m, "StreamProcessorArrayNode")
+	  .def(py::init<const uhal::Node &>())
+	  .def("stream_select",
+	       &dtpcontrols::StreamProcessorArrayNode::stream_select,
+	       py::arg("pipe"), py::arg("dispatch")=true);
 
-}
+      }
 
-} // namespace python
-} // namespace timing
+    } // namespace python
+  } // namespace timing
 } // namespace dunedaq

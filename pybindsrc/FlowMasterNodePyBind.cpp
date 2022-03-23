@@ -15,21 +15,21 @@
 namespace py = pybind11;
 
 namespace dunedaq {
-namespace dtpcontrols {
-namespace python {
+  namespace dtpcontrols {
+    namespace python {
 
-void register_flowmaster_node(py::module& m){ 
+      void register_flowmaster_node(py::module& m){ 
 
-    m.doc() = "c++ implementation of dtpcontrols FlowMaster python modules"; // optional module docstring
+	m.doc() = "c++ implementation of dtpcontrols FlowMaster python modules"; // optional module docstring
 
-     py::class_<dtpcontrols::FlowMasterNode, uhal::Node>(m, "FlowMasterNode")
-       .def(py::init<const uhal::Node&>())
-       .def("source_select", py::overload_cast<const std::string&, const bool>(&FlowMasterNode::source_select),
-	   py::arg("source"), py::arg("dispatch") = true)
-       .def("sink_select", py::overload_cast<const std::string&, const bool>(&FlowMasterNode::sink_select),
-	    py::arg("sink"), py::arg("dispatch")=true);
-}
+	py::class_<dtpcontrols::FlowMasterNode, uhal::Node>(m, "FlowMasterNode")
+	  .def(py::init<const uhal::Node&>())
+	  .def("source_select", py::overload_cast<const std::string&, const bool>(&FlowMasterNode::source_select),
+	       py::arg("source"), py::arg("dispatch") = true)
+	  .def("sink_select", py::overload_cast<const std::string&, const bool>(&FlowMasterNode::sink_select),
+	       py::arg("sink"), py::arg("dispatch")=true);
+      }
 
-} // namespace python
-} // namespace timing
+    } // namespace python
+  } // namespace timing
 } // namespace dunedaq
