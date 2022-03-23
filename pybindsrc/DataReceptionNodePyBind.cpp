@@ -22,7 +22,7 @@ namespace dunedaq {
 
 	py::class_<dtpcontrols::DataReceptionNode, uhal::Node>(m, "DataReceptionNode")
 	  .def(py::init<const uhal::Node&>())
-	  .def("enable_data_reception", &dtpcontrols::DataReceptionNode::enable_data_reception)
+	  //.def("enable_data_reception", &dtpcontrols::DataReceptionNode::enable_data_reception)
 	  .def("reset_input_word_counter", &dtpcontrols::DataReceptionNode::reset_input_word_counter)
 	  .def("reset_output_word_counter", &dtpcontrols::DataReceptionNode::reset_output_word_counter);
       }

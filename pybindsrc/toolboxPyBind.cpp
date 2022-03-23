@@ -18,7 +18,7 @@ namespace dunedaq {
   namespace dtpcontrols {
     namespace python {
 
-      void register_data_reception_node(py::module& m){ 
+      void register_toolbox(py::module& m){
 
 	m.doc() = "c++ implementation of dtpcontrols toolbox python modules"; // optional module docstring
 
