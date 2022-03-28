@@ -39,7 +39,7 @@ namespace dunedaq {
 
       public:
 
-      explicit DTPPodNode(const uhal::Node& node, uint n_links=5);
+      explicit DTPPodNode(const uhal::Node& node);
       virtual ~DTPPodNode();
 
       // get nodes
@@ -51,19 +51,22 @@ namespace dunedaq {
       const CentralRouterInterfaceNode& get_crif_node() const;
       const OutputSinkNode& get_output_sink_node() const;
 
+      // read firmware config info
+      std::map<std::string, uint32_t> get_firmware_config_info() const;
       // reset everything
       void reset();
 
       // configure TP generation
       // this is a placeholder - a configuration set will be needed as argument
-      void configure();
+      void configure()const;
 
       // enable TP generation
-      void enable();
+      void enable()const;
 
     private:
       
       // how many links does this build contain
+      std::map<std::string, uint32_t> m_dtp_fw_info;
       uint32_t m_n_links;
 
     };

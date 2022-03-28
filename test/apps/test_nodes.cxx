@@ -1,9 +1,18 @@
+/**
+ * @file test_nodes.cxx
+ *
+ * This is part of the DUNE DAQ Software Suite, copyright 2022.
+ * Licensing/copyright details are in the COPYING file that you should have
+ * received with this code.
+ */
+
 #include "dtpcontrols/DataReceptionNode.hpp"
 #include "dtpcontrols/ControlNode.hpp"
 #include "dtpcontrols/DTPPodNode.hpp"
 #include "dtpcontrols/toolbox.hpp"
 
 #include "uhal/uhal.hpp"
+#include "logging/Logging.hpp"
 
 #include <iostream>
 
@@ -12,42 +21,48 @@ using namespace dunedaq::dtpcontrols;
 
 int main(int argc, char const* argv[]) {
 
-  std::cout << "Test TPG Node structure" << std::endl;
+  TLOG() << "Test TPG Node structure";
 
   std::string conn_file = find_connection_file();
-  std::string device("");
+  std::string device("flx-0-p2-hf");
 
-  if (argc >1) {
+  // optional command line args
+  if (argc > 1) {
     device = argv[1];
-  }
-  else {
-    std::cout << "At least specify a device" << std::endl;
   }
 
   if (argc > 2) {
     conn_file = std::string(argv[2]);
   }
   
-  std::cout << "Connections : " << conn_file << std::endl;
-  std::cout << "Device      : " << device << std::endl;
+  TLOG() << "Connections : " << conn_file;
+  TLOG() << "Device      : " << device;
 
-  uhal::setLogLevelTo(uhal::Debug());
+  //  uhal::setLogLevelTo(uhal::Debug());
   uhal::ConnectionManager cm(conn_file, {"ipbusflx-2.0"});
-  uhal::HwInterface flx = cm.getDevice(std::string(argv[1]));
+  uhal::HwInterface flx = cm.getDevice(device);
 
-  DTPPodNode dtp_pod_node (flx.getNode());
+  auto dtp_pod_node = dynamic_cast<const DTPPodNode*>( &flx.getNode(std::string("")) );
   
-  auto lInfoNode = dtp_pod_node.get_info_node();
-  auto lCtrlNode = dtp_pod_node.get_control_node();
-  auto lFlowMasterNode = dtp_pod_node.get_flowmaster_node();
+  auto lInfoNode = dtp_pod_node->get_info_node();
+  TLOG() << lInfoNode.getId();
+  auto lCtrlNode = dtp_pod_node->get_control_node();
+  TLOG() << lCtrlNode.getId() << std::endl;
+
+  auto lFlowMasterNode = dtp_pod_node->get_flowmaster_node();
+  TLOG() << lFlowMasterNode.getId();
 
   for (int i=0; i<5; ++i) {
-    auto lWibtorNode = dtp_pod_node.get_wibulator_node(i);
-    auto lLinkProcNode = dtp_pod_node.get_link_processor_node(i);
+    auto lWibtorNode = dtp_pod_node->get_wibulator_node(i);
+    TLOG() << lWibtorNode.getId();
+    auto lLinkProcNode = dtp_pod_node->get_link_processor_node(i);
+    TLOG() << lLinkProcNode.getId();
   }
 
-  auto lCrifNode = dtp_pod_node.get_crif_node();
-  auto lOutsinkNode = dtp_pod_node.get_output_sink_node();
-
+  auto lCrifNode = dtp_pod_node->get_crif_node();
+  TLOG() << lCrifNode.getId();
+  auto lOutsinkNode = dtp_pod_node->get_output_sink_node();
+  TLOG() << lOutsinkNode.getId();
+  
 }
 

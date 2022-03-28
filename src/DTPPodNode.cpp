@@ -18,9 +18,8 @@ namespace dunedaq {
     
     UHAL_REGISTER_DERIVED_NODE(DTPPodNode)
     
-
-    DTPPodNode::DTPPodNode(const uhal::Node& node, uint n_links) :uhal::Node(node),
-      m_n_links(n_links)
+    DTPPodNode::DTPPodNode(const uhal::Node& node) :uhal::Node(node),
+      m_n_links(5)
     {
     }
 
@@ -67,19 +66,30 @@ namespace dunedaq {
     const OutputSinkNode& DTPPodNode::get_output_sink_node() const {
       return getNode<OutputSinkNode>("outsink");
     }
-    
+
+    std::map<std::string, uint32_t> DTPPodNode::get_firmware_config_info() const {
+      auto info_node = get_info_node();
+      auto l_config_names = info_node.getNode("config").getNodes();
+      std::map<std::string, uint32_t> l_firmware_info;
+      for (auto& l_name : l_config_names) {
+	std::cout << l_name <<std::endl;
+	auto temp = info_node.getNode("config."+l_name).read();
+	getClient().dispatch();
+	l_firmware_info.insert({l_name, temp});
+	}
+      return l_firmware_info;
+    }
 
     void DTPPodNode::reset() {
-    
+      m_dtp_fw_info = get_firmware_config_info();
+      m_n_links = m_dtp_fw_info["n_links"];
       auto lCtrlNode = get_control_node();
-      lCtrlNode.SoftReset(true);
-      lCtrlNode.MasterReset(true);
-      
+      lCtrlNode.soft_reset(true);
+      lCtrlNode.master_reset(true);   
+
       for (uint i=0; i!=m_n_links; ++i) {	
 	auto lDataReceptionNode = get_link_processor_node(i).get_data_router_node().get_data_reception_node();
-	lDataReceptionNode.ResetInputWordCounter(true);
-	lDataReceptionNode.ResetOutputWordCounter(true);
-	lDataReceptionNode.ErrorReset(true);
+	lDataReceptionNode.reset(true);
       }
 
     }

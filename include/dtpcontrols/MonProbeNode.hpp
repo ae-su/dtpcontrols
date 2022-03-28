@@ -26,13 +26,14 @@ public:
   explicit MonProbeNode(const uhal::Node& );
   virtual ~MonProbeNode();
 
-  uhal::ValWord<uint32_t> Ready(bool);
-  uhal::ValWord<uint32_t> Valid(bool);
-  uhal::ValWord<uint32_t> User(bool);
-  uhal::ValWord<uint32_t> Last(bool);
-  uhal::ValWord<uint32_t> LastError(bool);
-  uhal::ValWord<uint32_t> PacketCount(bool);
-  uhal::ValWord<uint32_t> AXIError(bool);
+  uhal::ValWord<uint32_t> ready(bool dispatch=true);
+  uhal::ValWord<uint32_t> valid(bool dispatch=true);
+  uhal::ValWord<uint32_t> user(bool dispatch=true);
+  uhal::ValWord<uint32_t> last(bool dispatch=true);
+  uhal::ValWord<uint32_t> last_error(bool dispatch=true);
+  uhal::ValWord<uint32_t> packet_count(bool dispatch=true);
+  uhal::ValWord<uint32_t> axi_error(bool dispatch=true);
+
 };
 
 } // namespace dtpcontrols

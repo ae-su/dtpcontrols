@@ -18,25 +18,23 @@
 #include "dtpcontrols/StreamProcessorNode.hpp"
 
 namespace dunedaq {
-namespace dtpcontrols {
+  namespace dtpcontrols {
 
-class StreamProcessorArrayNode : public uhal::Node {
+    class StreamProcessorArrayNode : public uhal::Node {
 
-  UHAL_DERIVEDNODE(StreamProcessorArrayNode)
+      UHAL_DERIVEDNODE(StreamProcessorArrayNode)
   
-public:
-  explicit StreamProcessorArrayNode(const uhal::Node& );
-  virtual ~StreamProcessorArrayNode();
+      public:
+      explicit StreamProcessorArrayNode(const uhal::Node& );
+      virtual ~StreamProcessorArrayNode();
 
-  void CapCounters(const bool);
-  void StreamSelect(const uint32_t, const bool);
-  //  const uhal::Node& GetStreamProcessorNode(void);
+      void stream_select(const uint32_t, const bool);
 
-  const StreamProcessorNode& get_stream_proc_node() const;
-  
-};
+      const StreamProcessorNode& get_stream_proc_node() const;
 
-} // namespace dtpcontrols
+    };
+
+  } // namespace dtpcontrols
 } // namespace dunedaq
 
 #endif // DTPCONTROLS_INCLUDE_DTPCONTROLS_STREAMPROCESSORARRAYNODE_HPP_
