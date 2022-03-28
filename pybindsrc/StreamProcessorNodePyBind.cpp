@@ -28,7 +28,6 @@ namespace dunedaq {
 	       &dtpcontrols::StreamProcessorNode::set_mask_channel_00to31,
 	       py::arg("mask00to31"), py::arg("dispatch") = true,
 	       py::arg("mask_en_dsbl") = true)
-	  .def("drop_empty", &dtpcontrols::StreamProcessorNode::drop_empty, py::arg("dispatch")=true)
 	  .def("set_mask_channel_32to63",
 	       &dtpcontrols::StreamProcessorNode::set_mask_channel_32to63,
 	       py::arg("mask32to63"), py::arg("dispatch")=true,

@@ -21,10 +21,7 @@ namespace dunedaq {
 	m.doc() = "c++ implementation of dtpcontrols CentralRouterInterface python modules"; // optional module docstring
 
 	py::class_<dtpcontrols::CentralRouterInterfaceNode, uhal::Node>(m, "CentralRouterInterfaceNode")
-	  .def(py::init<const uhal::Node&>())
-	  .def("enable_central_router_interface", &dtpcontrols::CentralRouterInterfaceNode::enable_central_router_interface,
-	       py::arg("dispatch") = true)
-	  .def("drop_empty", &dtpcontrols::CentralRouterInterfaceNode::drop_empty, py::arg("dispatch") = true);
+	  .def(py::init<const uhal::Node&>());
       }
 
     } // namespace python
