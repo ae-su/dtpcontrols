@@ -24,6 +24,7 @@ namespace dunedaq {
       extern void register_dtppod_node(py::module& m);
       extern void register_wibulator_node(py::module& m);
       extern void register_toolbox(py::module& m);
+      extern void register_info_node(py::module& m);
       
       PYBIND11_MODULE(_daq_dtpcontrols_py, top_module) {
 
@@ -40,6 +41,7 @@ namespace dunedaq {
 	dtpcontrols::python::register_dtppod_node(core_module);
 	dtpcontrols::python::register_wibulator_node(core_module);
 	dtpcontrols::python::register_toolbox(core_module);
+	dtpcontrols::python::register_info_node(core_module);
       }
 
     } // namespace python
