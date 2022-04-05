@@ -19,6 +19,8 @@
 #include "dtpcontrols/OutputSinkNode.hpp"
 #include "dtpcontrols/WibulatorNode.hpp"
 #include "dtpcontrols/LinkProcessorNode.hpp"
+#include "dtpcontrols/MonProbeNodeInfo.hpp"
+
 
 // uHal Headers
 #include "uhal/DerivedNode.hpp"
@@ -63,14 +65,44 @@ namespace dunedaq {
       // reset everything
       void reset() const;
 
-      // configure TP generation
-      void configure(uint32_t threshold, std::vector<uint64_t> masks) const;
+      // reset counters
+      void reset_counters() const;
 
-      // enable TP generation
-      void enable() const;
+      // set input to wibulator
+      void set_source_int() const;
 
-      // disable TP generation
-      void disable() const;
+      // set input to external data
+      void set_source_ext() const;
+
+      // set sink (spy) to hits
+      void set_sink_hits() const;
+
+      // set crif to drop empty packets
+      void set_crif_drop_empty() const;
+
+      // setup a link processor
+      void setup_processors() const;
+
+      // set all thresholds
+      void set_threshold_all(int threshold) const;
+
+      // reset all masks
+      void reset_masks() const;
+
+      // set masks for all channels in one link/pipe
+      void set_channel_mask(int link, int pipe, uint64_t mask) const;
+
+      // mask one channel
+      void mask_channel(int link, int pipe, int channel) const;
+
+      // enable CRIF
+      void enable_crif() const;
+
+      // disable CRIF
+      void disable_crif() const;
+
+      // get mon probe info
+      std::vector<MonProbeNodeInfo> get_mon_probe_info(int link, int pipe) const;
 
     private:
       
