@@ -296,8 +296,9 @@ def flowmaster(obj, src_sel, sink_sel):
 @cli.command('cr-if')
 @click.option('--on/--off', 'cr_on', help='Enable central-router interface block', default=None)
 @click.option('--drop-empty/--keep-empty', 'drop_empty', help='Drop empty hit packets', default=None)
+@click.option('--sink/--nosink', 'sink', help='Drop empty hit packets', default=None)
 @click.pass_obj
-def cr_if(obj, cr_on, drop_empty):
+def cr_if(obj, cr_on, drop_empty, sink):
 
     crNode = obj.podNode.getNode('cr_if')
     if cr_on is not None:
@@ -305,6 +306,9 @@ def cr_if(obj, cr_on, drop_empty):
 
     if drop_empty is not None:
         cr.drop(crNode, drop_empty)
+
+    if sink is not None:
+        cr.sink(crNode, sink)
 
     print('--- cr_if.csr ---')
     regs = dumpSubRegs(crNode.getNode("csr"))

@@ -3,6 +3,7 @@
     <node id="ctrl" address="0x0">
         <node id="en" mask="0x1"/>
         <node id="drop_empty" mask="0x2"/>
+        <node id="sink" mask="0x4"/>
     </node>
 
     <node id="b0: fifo" address="0x8">

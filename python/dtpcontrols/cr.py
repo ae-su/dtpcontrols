@@ -14,3 +14,11 @@ def drop(crNode, en=True):
 
     crNode.getNode('csr.ctrl.drop_empty').write(en)
     crNode.getClient().dispatch()
+
+def sink(crNode, en=True):
+    """
+    sink mode control
+    """
+
+    crNode.getNode('csr.ctrl.sink').write(en)
+    crNode.getClient().dispatch()
